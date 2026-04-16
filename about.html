@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>About Us | Vendora — Premium Pop-Up Market & Event Vendor Platform</title>
+  <meta name="description" content="Vendora is the leading platform for luxury pop-up markets, connecting premium vendors with exclusive event spaces. Discover our story, values, and global impact.">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Light mode (default) */
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8F8F4;
+      --bg-card: #FFFFFF;
+      --bg-nav: #0D0D0D;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #6b6b6b;
+      --border-color: #e5e5e5;
+      --gold: #C19A6B;
+      --gold-light: #d4af7a;
+      --gold-dark: #a07e50;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --nav-text: #FFFFFF;
+      --footer-text: #FFFFFF;
+      --footer-text-muted: #aaaaaa;
+      --footer-bg: #0D0D0D;
+      --active-bg: rgba(193,154,107,0.2);
+      --active-border: var(--gold);
+    }
+
+    /* Dark mode */
+    body.dark {
+      --bg-primary: #0D0D0D;
+      --bg-secondary: #0a0a0a;
+      --bg-card: #141414;
+      --bg-nav: #0D0D0D;
+      --text-primary: #FFFFFF;
+      --text-secondary: #cccccc;
+      --text-muted: #999999;
+      --border-color: #2a2a2a;
+      --gold: #C19A6B;
+      --gold-light: #d4af7a;
+      --shadow: 0 10px 30px rgba(0,0,0,0.5);
+      --nav-text: #FFFFFF;
+      --footer-text: #FFFFFF;
+      --footer-text-muted: #aaaaaa;
+      --footer-bg: #0D0D0D;
+      --active-bg: rgba(193,154,107,0.25);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      scroll-behavior: smooth;
+      line-height: 1.5;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .font-serif {
+      font-family: 'Merriweather', serif;
+    }
+
+    /* animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fadeInUp 0.8s ease-out; }
+
+    /* gold utilities */
+    .gold-text { color: var(--gold); }
+    .gold-divider {
+      width: 70px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.8rem auto 2rem;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #0D0D0D;
+      font-weight: 600;
+      padding: 0.85rem 2rem;
+      border-radius: 0;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-gold:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+    .btn-outline-gold {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.75rem 1.8rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-outline-gold:hover {
+      background: var(--gold);
+      color: #0D0D0D;
+    }
+
+    /* ===== NAVBAR WITH ACTIVE STATES ===== */
+    .navbar {
+      background: var(--bg-nav);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .flex-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+    .nav-logo-text {
+      font-size: 1.8rem !important;
+      font-weight: 700 !important;
+      color: var(--nav-text);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .nav-logo-text span {
+      color: var(--gold);
+      font-style: italic;
+      font-family: 'Merriweather', serif;
+    }
+    .nav-menu-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      margin: 0 2rem;
+    }
+    .nav-links-group {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      color: var(--nav-text);
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      text-decoration: none;
+      position: relative;
+    }
+    .nav-link:hover { color: var(--gold); background: rgba(193,154,107,0.15); }
+    
+    /* Active link styling - desktop */
+    .nav-link.active {
+      color: var(--gold);
+      background: var(--active-bg);
+      border-bottom: 2px solid var(--gold);
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+    
+    .dropdown-container {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-btn {
+      background: none;
+      border: none;
+      color: var(--nav-text);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .dropdown-btn:hover { color: var(--gold); background: rgba(193,154,107,0.15); }
+    /* Active state for dropdown button when any child is active */
+    .dropdown-container.has-active .dropdown-btn {
+      color: var(--gold);
+      background: var(--active-bg);
+    }
+    .dropdown-menu {
+      position: absolute;
+      left: 0;
+      margin-top: 0.5rem;
+      width: 200px;
+      background: var(--bg-card);
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      transform: translateY(10px);
+      z-index: 60;
+      border: 1px solid var(--border-color);
+    }
+    .dropdown-container:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 0.75rem 1.2rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    .dropdown-menu a:hover { background: rgba(193,154,107,0.1); color: var(--gold); }
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: rgba(193,154,107,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--nav-text);
+      border: none;
+      transition: 0.2s;
+    }
+    .icon-btn:hover { background: var(--gold); color: #0D0D0D; }
+    .login-btn {
+      background: var(--gold);
+      color: #0D0D0D;
+      padding: 0.5rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: 0.3s;
+    }
+    .login-btn:hover { background: var(--gold-light); transform: scale(1.02); }
+    
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+    .hamburger-icon, .close-icon { font-size: 1.8rem; color: var(--nav-text); }
+    .close-icon { display: none; }
+    .mobile-menu-btn.active .hamburger-icon { display: none; }
+    .mobile-menu-btn.active .close-icon { display: block; }
+    .mobile-menu-panel {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      background: var(--bg-nav);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      z-index: 999;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+    }
+    .mobile-menu-panel.show { max-height: calc(100vh - 80px); overflow-y: auto; }
+    .mobile-menu-inner { padding: 0.5rem 0; }
+    .mobile-nav-item {
+      border-bottom: 1px solid rgba(193,154,107,0.1);
+    }
+    .mobile-nav-link {
+      color: var(--nav-text);
+      text-decoration: none;
+      display: block;
+      padding: 1rem 1.5rem;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .mobile-nav-link:hover { color: var(--gold); background: rgba(193,154,107,0.1); }
+    /* Active mobile link */
+    .mobile-nav-link.active {
+      color: var(--gold);
+      background: rgba(193,154,107,0.2);
+      border-left: 3px solid var(--gold);
+    }
+    .mobile-dropdown-item {
+      border-bottom: 1px solid rgba(193,154,107,0.1);
+    }
+    .mobile-dropdown-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--nav-text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .mobile-dropdown-btn.active {
+      color: var(--gold);
+    }
+    .mobile-submenu {
+      padding-left: 1.5rem;
+      background: rgba(0,0,0,0.2);
+      display: none;
+    }
+    .mobile-submenu.show { display: block; }
+    .mobile-submenu a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--nav-text);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: 0.2s;
+      border-left: 2px solid transparent;
+    }
+    .mobile-submenu a:hover { color: var(--gold); border-left-color: var(--gold); }
+    .mobile-login-btn {
+      display: inline-block;
+      margin: 1rem 1.5rem;
+      background: var(--gold);
+      color: #0D0D0D;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      text-align: center;
+    }
+    .mobile-theme-rtl {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid rgba(193,154,107,0.15);
+    }
+    .mobile-icon-btn {
+      background: rgba(193,154,107,0.2);
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      color: var(--nav-text);
+      cursor: pointer;
+    }
+    
+    @media (max-width: 1180px) {
+      .nav-menu-container, .nav-buttons { display: none; }
+      .mobile-menu-btn { display: block; }
+    }
+
+    /* container & sections */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 100px 0; border-bottom: 1px solid var(--border-color); }
+    .section-title {
+      font-size: 3rem;
+      font-family: 'Merriweather', serif;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 2rem;
+      transition: all 0.3s;
+      border-radius: 4px;
+    }
+    .card:hover { border-color: var(--gold); transform: translateY(-6px); }
+    .card-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem; }
+    .stat-number { font-size: 3rem; font-weight: 700; color: var(--gold); font-family: 'Merriweather', serif; }
+    .full-width-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      transition: transform 0.4s;
+    }
+    .full-width-img:hover { transform: scale(1.01); }
+    .img-caption { margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); text-align: center; }
+    .values-list { list-style: none; margin-top: 1rem; }
+    .values-list li { margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
+    .values-list i { color: var(--gold); width: 24px; }
+    
+    /* footer */
+    footer {
+      background: var(--footer-bg);
+      padding-top: 80px;
+      padding-bottom: 40px;
+      border-top: 1px solid rgba(193,154,107,0.2);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .footer-logo {
+      font-size: 1.8rem !important;
+      font-weight: 700 !important;
+      color: var(--footer-text);
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--gold); font-style: italic; font-family: 'Merriweather', serif; }
+    .footer-col h4 { font-size: 1.2rem; margin-bottom: 1.2rem; color: var(--footer-text); }
+    .footer-col a, .footer-col p { color: var(--footer-text-muted); text-decoration: none; display: block; margin-bottom: 0.6rem; font-size: 0.85rem; }
+    .footer-col a:hover { color: var(--gold); }
+    .social-icons a { display: inline-block; margin-right: 1rem; font-size: 1.2rem; color: var(--footer-text-muted); }
+    .social-icons a:hover { color: var(--gold); }
+    .footer-copyright {
+      border-top: 1px solid rgba(193,154,107,0.15);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: var(--footer-text-muted);
+      font-size: 0.8rem;
+    }
+    @media (max-width: 1024px) {
+      .section-title { font-size: 2.5rem; }
+      .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .section-title { font-size: 2rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      section { padding: 60px 0; }
+    }
+    .mobile-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-submenu.show {
+  max-height: 300px;
+}
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR WITH ACTIVE STATES ===== -->
+<nav class="navbar">
+ <div class="nav-container">
+    <div class="flex-nav">
+      <div><a href="index.html" class="nav-logo-text"><span>Vendora</span></a></div>
+      <div class="nav-menu-container">
+        <div class="nav-links-group">
+          <div class="dropdown-container">
+            <button class="dropdown-btn">Home <i class="fas fa-chevron-down"></i></button>
+            <div class="dropdown-menu"><a href="index.html">Home 1</a><a href="home2.html">Home 2</a></div>
+          </div>
+          <a href="about.html" class="nav-link active">About</a>
+          <a href="vendor.html" class="nav-link">Vendors</a>
+          <a href="process.html" class="nav-link">Process</a>
+          <a href="service.html" class="nav-link">Service</a>
+          <a href="faq.html" class="nav-link">FAQ</a>
+          <div class="dropdown-container">
+            <button class="dropdown-btn">Portal <i class="fas fa-chevron-down"></i></button>
+            <div class="dropdown-menu"><a href="admin.html">Admin Dashboard</a><a href="user.html">Vendor Dashboard</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-buttons">
+        <a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="#" class="login-btn"><i class="fas fa-user-plus"></i>Register</a>
+        <button id="rtl-toggle" class="icon-btn" title="RTL"><i class="fas fa-exchange-alt"></i></button>
+        <button id="theme-toggle" class="icon-btn" title="Theme"><i class="fas fa-moon"></i></button>
+      </div>
+      <button id="mobile-menu-btn" class="mobile-menu-btn">
+        <i class="fas fa-bars hamburger-icon"></i>
+        <i class="fas fa-times close-icon"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu Panel -->
+  <div id="mobile-menu-panel" class="mobile-menu-panel">
+    <div class="mobile-menu-inner">
+      <!-- Home Dropdown in Mobile - FIXED -->
+      <div class="mobile-dropdown-item">
+        <button class="mobile-dropdown-btn" id="mobileHomeDropdownBtn">
+          Home <i class="fas fa-chevron-down mobile-dropdown-icon" id="mobileHomeIcon"></i>
+        </button>
+        <div class="mobile-submenu" id="mobileHomeSubmenu">
+          <a href="index.html">Home 1</a>
+          <a href="#">Home 2</a>
+        </div>
+      </div>
+      
+      <div class="mobile-nav-item"><a href="about.html" class="mobile-nav-link active">About</a></div>
+      <div class="mobile-nav-item"><a href="vendor.html" class="mobile-nav-link ">Vendors</a></div>
+      <div class="mobile-nav-item"><a href="process.html" class="mobile-nav-link">Process</a></div>
+      <div class="mobile-nav-item"><a href="service.html" class="mobile-nav-link">Service</a></div>
+      <div class="mobile-nav-item"><a href="faq.html" class="mobile-nav-link">FAQ</a></div>
+      
+      <!-- Portal Dropdown in Mobile -->
+      <div class="mobile-dropdown-item">
+        <button class="mobile-dropdown-btn" id="mobilePortalDropdownBtn">
+          Portal <i class="fas fa-chevron-down mobile-dropdown-icon" id="mobilePortalIcon"></i>
+        </button>
+        <div class="mobile-submenu" id="mobilePortalSubmenu">
+          <a href="admin.html">Admin Dashboard</a>
+          <a href="user.html">Vendor Dashboard</a>
+        </div>
+      </div>
+      
+      <div class="mobile-nav-item">
+        <a href="login.html" class="mobile-login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="register.html" class="mobile-login-btn"><i class="fas fa-user-plus"></i>Register</a>
+      </div>
+      <div class="mobile-theme-rtl">
+        <button id="mobile-theme-toggle" class="mobile-icon-btn"><i class="fas fa-moon"></i> Theme</button>
+        <button id="mobile-rtl-toggle" class="mobile-icon-btn"><i class="fas fa-exchange-alt"></i> RTL</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== ABOUT PAGE: 6 SECTIONS ===== -->
+
+<!-- SECTION 1: Our Story -->
+<section style="padding-top: 120px;">
+  <div class="container">
+    <div class="grid-2">
+      <div class="animate-fade-in">
+        <h1 class="font-serif" style="font-size: 3rem; margin-bottom: 1.5rem;">Crafting <span class="gold-text">Extraordinary</span> Pop-Up Experiences</h1>
+        <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1.5rem;">Vendora is the leading platform for luxury pop-up markets and event vendor management. Born in 2021, we've curated over 45 exclusive events across 12 cities, connecting premium artisans, designers, and brands with discerning audiences in high-footfall venues.</p>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Our mission: to transform temporary retail into unforgettable brand moments. From rooftop soirées to cultural hub activations, we handle curation, logistics, and marketing — so vendors can focus on what they do best: creating.</p>
+        <a href="#values" class="btn-gold">Discover Our Values <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div>
+        <img class="full-width-img" src="images/h3.avif" alt="Luxury pop-up market event with vendors and attendees" style="max-height: 450px; object-fit: cover; width: 100%; border-radius: 16px;">
+        <div class="img-caption">Vendora Golden Edition — Our flagship pop-up market</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: Our Values -->
+<section id="values" style="background: var(--bg-secondary);">
+  <div class="container">
+    <h2 class="section-title">Our <span class="gold-text">Core Values</span></h2>
+    <div class="gold-divider"></div>
+    <div class="grid-2">
+      <div>
+        <img class="full-width-img" src="images/a1.avif" alt="Artisan craftsperson at work" style="border-radius: 20px;">
+        <div class="img-caption">Celebrating authentic craftsmanship</div>
+      </div>
+      <div>
+        <ul class="values-list">
+          <li><i class="fas fa-gem fa-lg"></i> <strong>Curatorial Excellence:</strong> Every vendor is hand-vetted by our luxury committee to ensure quality and uniqueness.</li>
+          <li><i class="fas fa-hand-sparkles"></i> <strong>Elevated Experiences:</strong> We design atmospheres that convert — champagne bars, live music, and immersive branding.</li>
+          <li><i class="fas fa-globe"></i> <strong>Global Community:</strong> 400+ premium makers from Paris, Tokyo, NYC, and beyond connected through our platform.</li>
+          <li><i class="fas fa-seedling"></i> <strong>Sustainable Luxury:</strong> We prioritize eco-conscious brands and zero-waste event practices.</li>
+          <li><i class="fas fa-chart-line"></i> <strong>Vendor Success:</strong> Transparent analytics, seamless payouts, and dedicated support for every seller.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: Impact & Milestones -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Our <span class="gold-text">Impact</span> by Numbers</h2>
+    <div class="gold-divider"></div>
+    <div class="grid-4" style="margin-bottom: 3rem;">
+      <div class="card" style="text-align: center;"><div class="stat-number">45+</div><p>Luxury Pop-Up Markets</p><i class="fas fa-calendar-check gold-text"></i></div>
+      <div class="card" style="text-align: center;"><div class="stat-number">280k+</div><p>Attendees Worldwide</p><i class="fas fa-users gold-text"></i></div>
+      <div class="card" style="text-align: center;"><div class="stat-number">$12.4M</div><p>Vendor Revenue Generated</p><i class="fas fa-chart-line gold-text"></i></div>
+      <div class="card" style="text-align: center;"><div class="stat-number">98%</div><p>Vendor Retention Rate</p><i class="fas fa-heart gold-text"></i></div>
+    </div>
+    <div>
+      <img class="full-width-img" src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=2069&auto=format" alt="Nighttime luxury pop-up market" style="border-radius: 20px; max-height: 480px; object-fit: cover;">
+      <div class="img-caption">Noire Evening — Our signature late-night shopping experience</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: Leadership Team -->
+<section style="background: var(--bg-secondary);">
+  <div class="container">
+    <h2 class="section-title">Meet the <span class="gold-text">Curators</span></h2>
+    <div class="gold-divider"></div>
+    <div class="grid-3">
+      <div class="card" style="text-align: center;">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 2px solid var(--gold);">
+        <h3>Maya Desai</h3>
+        <p style="color: var(--gold);">Founder & Creative Director</p>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">Former luxury buyer, Maya built Vendora to bridge exceptional artisans with cultural hotspots worldwide.</p>
+      </div>
+      <div class="card" style="text-align: center;">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 2px solid var(--gold);">
+        <h3>Arjun Khanna</h3>
+        <p style="color: var(--gold);">Head of Vendor Relations</p>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">Ensures every brand receives white-glove placement, storytelling, and growth support.</p>
+      </div>
+      <div class="card" style="text-align: center;">
+        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1887&auto=format" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 2px solid var(--gold);">
+        <h3>Zara El-Masri</h3>
+        <p style="color: var(--gold);">Experience Curator</p>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">Designs immersive environments, from lighting to scent branding at each market.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: Press & Recognition -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Press & <span class="gold-text">Recognition</span></h2>
+    <div class="gold-divider"></div>
+    <div class="grid-2">
+      <div>
+        <img class="full-width-img" src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070&auto=format" alt="Magazine featuring Vendora" style="border-radius: 12px;">
+        <div class="img-caption">Featured in Vogue Business, Elle Décor, and Financial Times</div>
+      </div>
+      <div>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div><i class="fas fa-newspaper gold-text" style="font-size: 2rem;"></i><h3 style="margin-top: 0.5rem;">"The new gold standard for pop-up marketplaces"</h3><p style="color: var(--text-muted);">— Financial Times, Luxury Retail Summit</p></div>
+          <div><i class="fas fa-trophy gold-text" style="font-size: 2rem;"></i><h3 style="margin-top: 0.5rem;">Best Emerging Platform 2025</h3><p style="color: var(--text-muted);">Global Pop-Up Awards — recognized for innovation & vendor success</p></div>
+          <div><i class="fas fa-quote-right gold-text" style="font-size: 2rem;"></i><h3 style="margin-top: 0.5rem;">"Vendora is where discovery meets luxury commerce"</h3><p style="color: var(--text-muted);">— Harper's Bazaar, Editor's Pick</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: Join the Movement -->
+<section style="background: var(--bg-secondary);">
+  <div class="container">
+    <div class="grid-2">
+      <div>
+        <h2 class="font-serif" style="font-size: 2.8rem; margin-bottom: 1rem;">Become part of <span class="gold-text">the pop-up revolution</span></h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Whether you're a designer, artisan, or brand with a distinct voice — Vendora provides the stage. Apply to our curated roster and join upcoming pop-ups in London, Mumbai, New York, Dubai, and beyond.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#" class="btn-gold">Apply as Vendor <i class="fas fa-gem"></i></a>
+          <a href="#" class="btn-outline-gold">Host a Market</a>
+        </div>
+      </div>
+      <div>
+        <img class="full-width-img" src="https://images.unsplash.com/photo-1533575770077-052fa2c609fc?q=80&w=2070&auto=format" alt="Vendora vendor showcase" style="border-radius: 20px; max-height: 380px; object-fit: cover;">
+        <div class="img-caption">Artisan spotlight: Vendora x Makers Guild, 2026 preview</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="footer-logo"><span>Vendora</span></a>
+        <p style="margin-top: 0.5rem;">Crafting luxury pop-up experiences. Curated markets, elevated commerce.</p>
+        <div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+      </div>
+      <div class="footer-col"><h4>Discover</h4><a href="index.html#markets">Markets</a><a href="index.html#vendors">Vendors</a><a href="about.html">Our Story</a><a href="#">Press</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="#">Vendor FAQ</a><a href="#">Event Inquiries</a><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      <div class="footer-col"><h4>Visit Studio</h4><p><i class="fas fa-map-marker-alt gold-text"></i> Suite 45, Creators Block, Mumbai, India</p><p><i class="fas fa-envelope gold-text"></i> hello@vendora.com</p><p><i class="fas fa-phone gold-text"></i> +91 98765 43210</p></div>
+    </div>
+    <div class="footer-copyright"><p>© 2026 Vendora. All rights reserved.</p><div><a href="#">Privacy Policy</a> <a href="#">Terms of Service</a></div></div>
+  </div>
+</footer>
+
+<script>
+  // Theme Toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+  const body = document.body;
+  
+  function updateThemeIcon(isDark) {
+    if(themeToggle) themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    if(mobileThemeToggle) mobileThemeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> Theme' : '<i class="fas fa-moon"></i> Theme';
+  }
+  
+  function toggleTheme() {
+    body.classList.toggle('dark');
+    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+    updateThemeIcon(body.classList.contains('dark'));
+  }
+  
+  if(localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+    updateThemeIcon(true);
+  } else if(window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('theme')) {
+    body.classList.add('dark');
+    updateThemeIcon(true);
+  }
+  
+  themeToggle?.addEventListener('click', toggleTheme);
+  mobileThemeToggle?.addEventListener('click', toggleTheme);
+  
+  // RTL Toggle
+  const rtlToggle = document.getElementById('rtl-toggle');
+  const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+  const htmlEl = document.documentElement;
+  
+  function toggleRTL() {
+    if(htmlEl.getAttribute('dir') === 'rtl') {
+      htmlEl.removeAttribute('dir');
+      localStorage.setItem('direction', 'ltr');
+    } else {
+      htmlEl.setAttribute('dir', 'rtl');
+      localStorage.setItem('direction', 'rtl');
+    }
+  }
+  
+  rtlToggle?.addEventListener('click', toggleRTL);
+  mobileRtlToggle?.addEventListener('click', toggleRTL);
+  
+  if(localStorage.getItem('direction') === 'rtl') htmlEl.setAttribute('dir', 'rtl');
+  
+  // Mobile Menu Toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobilePanel = document.getElementById('mobile-menu-panel');
+  
+  function toggleMobileMenu() {
+    mobilePanel.classList.toggle('show');
+    mobileMenuBtn.classList.toggle('active');
+    document.body.style.overflow = mobilePanel.classList.contains('show') ? 'hidden' : '';
+  }
+  
+  mobileMenuBtn?.addEventListener('click', toggleMobileMenu);
+  
+  // Close mobile menu when clicking links
+  document.querySelectorAll('.mobile-nav-link, .mobile-login-btn').forEach(link => {
+    link.addEventListener('click', () => {
+      if(mobilePanel.classList.contains('show')) toggleMobileMenu();
+    });
+  });
+  
+  // Mobile Portal Dropdown
+  const mobilePortalBtn = document.getElementById('mobilePortalBtn');
+  const mobilePortalSubmenu = document.getElementById('mobilePortalSubmenu');
+  
+  if(mobilePortalBtn && mobilePortalSubmenu) {
+    mobilePortalBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobilePortalSubmenu.classList.toggle('show');
+    });
+  }
+  
+  // Close on resize
+  window.addEventListener('resize', () => {
+    if(window.innerWidth > 1180 && mobilePanel?.classList.contains('show')) toggleMobileMenu();
+  });
+  
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if(targetId === "#" || targetId === "") return;
+      const target = document.querySelector(targetId);
+      if(target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if(mobilePanel?.classList.contains('show')) toggleMobileMenu();
+      }
+    });
+  });
+  // Mobile Dropdown Toggle (FIXED)
+document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+
+    const submenu = this.nextElementSibling;
+    const icon = this.querySelector('.mobile-dropdown-icon');
+
+    // Close all other dropdowns (optional but cleaner UX)
+    document.querySelectorAll('.mobile-submenu').forEach(menu => {
+      if (menu !== submenu) menu.classList.remove('show');
+    });
+
+    document.querySelectorAll('.mobile-dropdown-icon').forEach(i => {
+      if (i !== icon) i.classList.remove('rotated');
+    });
+
+    // Toggle current
+    submenu.classList.toggle('show');
+    icon.classList.toggle('rotated');
+  });
+});
+</script>
+</body>
+</html>

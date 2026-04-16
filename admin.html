@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="icon" type="image/jpeg" href="#">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <title>Vendora | Admin Dashboard</title>
+    <style>
+        /* --- Vendora Luxury Theme Variables (Same as index.html) --- */
+        :root,
+        html[data-theme='light'] {
+            --color-background: #FFFFFF;
+            --color-primary-text: #1a1a1a;
+            --color-secondary-text: #4a4a4a;
+            --color-accent: #C19A6B;
+            --color-accent-light: #d4af7a;
+            --color-border: #E5E7EB;
+            --color-hover: #F8F8F4;
+            --color-card-bg: #FFFFFF;
+            --color-sidebar-bg: #F8F8F4;
+            --gradient-gold: linear-gradient(135deg, #C19A6B 0%, #d4af7a 100%);
+            --gradient-dark: linear-gradient(135deg, #1a1a1a, #0D0D0D);
+        }
+
+        html[data-theme='dark'] {
+            --color-background: #0D0D0D;
+            --color-primary-text: #FFFFFF;
+            --color-secondary-text: #BDBDBD;
+            --color-accent: #C19A6B;
+            --color-accent-light: #d4af7a;
+            --color-border: #1E293B;
+            --color-hover: #1A1A1A;
+            --color-card-bg: #141414;
+            --color-sidebar-bg: #0a0a0a;
+            --gradient-gold: linear-gradient(135deg, #C19A6B 0%, #d4af7a 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        .font-serif {
+            font-family: 'Merriweather', serif;
+        }
+
+        /* Utility Classes */
+        .text-accent {
+            color: var(--color-accent);
+        }
+        .bg-background {
+            background-color: var(--color-background);
+        }
+        .bg-hover {
+            background-color: var(--color-hover);
+        }
+        .border-border {
+            border-color: var(--color-border);
+        }
+        .card-bg {
+            background-color: var(--color-card-bg);
+        }
+        .bg-sidebar {
+            background-color: var(--color-sidebar-bg);
+        }
+        .bg-gradient-gold {
+            background: var(--gradient-gold);
+        }
+
+        /* Dashboard Cards */
+        .dashboard-card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px -8px rgba(193, 154, 107, 0.08);
+        }
+        .dashboard-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 12px 28px -12px rgba(193, 154, 107, 0.2);
+        }
+
+        /* Status Indicators */
+        .status-pulse {
+            width: 10px;
+            height: 10px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Sidebar Navigation */
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            border-radius: 1rem;
+            color: var(--color-secondary-text);
+            transition: all 0.2s ease;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .sidebar-link i {
+            width: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--color-accent);
+        }
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: var(--gradient-gold);
+            color: white;
+        }
+        .sidebar-link:hover i,
+        .sidebar-link.active i {
+            color: white;
+        }
+        .sidebar-link.logout:hover {
+            background: #ef4444;
+        }
+
+        /* RTL Support */
+        html[dir="rtl"] .sidebar-link {
+            flex-direction: row-reverse;
+        }
+        html[dir="rtl"] .ml-auto {
+            margin-right: auto;
+            margin-left: 0;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Overlay */
+        #mobile-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            position: fixed;
+            inset: 0;
+            z-index: 55;
+        }
+        #mobile-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--color-accent);
+            border-radius: 10px;
+        }
+
+        /* Badges */
+        .badge-active {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .badge-pending {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .badge-approved {
+            background: rgba(193, 154, 107, 0.15);
+            color: var(--color-accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Hide sections */
+        .admin-section.hidden {
+            display: none;
+        }
+
+        /* Grid System */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .flex-start {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-3 { margin-top: 0.75rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+        
+        /* Logo from index.html */
+        .nav-logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: inline-block;
+            line-height: 1;
+        }
+        .nav-logo-text span {
+            color: var(--color-accent);
+            font-style: italic;
+            font-family: 'Merriweather', serif;
+        }
+        
+        /* Icon buttons from index.html */
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: rgba(193, 154, 107, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            color: white;
+            border: none;
+        }
+        .icon-btn:hover {
+            background: var(--color-accent);
+            color: #0D0D0D;
+        }
+        
+        .hidden-icon {
+            display: none;
+        }
+        
+        /* Table styles */
+        .data-table th, .data-table td {
+            padding: 1rem 0.5rem;
+            border-bottom: 1px solid var(--color-border);
+            text-align: left;
+        }
+        
+        /* Button styles */
+        .btn-gold {
+            background: var(--color-accent);
+            color: #0D0D0D;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-gold:hover {
+            background: var(--color-accent-light);
+            transform: scale(1.02);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            padding: 0.5rem 1rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            color: var(--color-primary-text);
+        }
+        .btn-outline:hover {
+            background: var(--color-hover);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR - SAME AS INDEX.HTML -->
+    <nav style="background: #0D0D0D; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; height: 80px;">
+                <div>
+                    <a href="index.html" class="nav-logo-text" style="color: white;"><span>Vendora</span> Admin</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <button id="rtl-toggle" class="icon-btn" title="RTL">
+                        <i class="fas fa-exchange-alt"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-btn" title="Theme">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun hidden-icon"></i>
+                    </button>
+                    <button id="mobile-menu-toggle" class="icon-btn lg:hidden" style="background: rgba(193,154,107,0.2);">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <!-- Admin Profile -->
+                    <div style="display: flex; align-items: center; gap: 0.5rem; padding-left: 0.75rem; border-left: 1px solid rgba(255,255,255,0.2);">
+                        <div style="position: relative;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-gold); display: flex; align-items: center; justify-content: center; color: black; font-weight: bold;">AD</div>
+                            <span class="status-pulse" style="position: absolute; bottom: 0; right: 0;"></span>
+                        </div>
+                        <div class="user-info-desktop" style="display: none;">
+                            <p style="color: white; font-size: 0.875rem; font-weight: 500;">Admin User</p>
+                            <p style="color: #aaaaaa; font-size: 0.75rem;">Super Admin</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Panel -->
+    <div id="mobile-menu-panel" style="position: fixed; top: 80px; left: 0; right: 0; background: #0D0D0D; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; z-index: 999; box-shadow: 0 20px 30px rgba(0,0,0,0.3);">
+        <div style="padding: 0.5rem 0;">
+            <div><a href="#" data-section="dashboard" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem;">Dashboard</a></div>
+            <div><a href="#" data-section="vendors" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem;">Vendors</a></div>
+            <div><a href="#" data-section="markets" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem;">Markets</a></div>
+            <div><a href="#" data-section="applications" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem;">Applications</a></div>
+            <div><a href="#" data-section="earnings" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem;">Earnings</a></div>
+            <div><a href="#" data-section="users" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem;">Users</a></div>
+            <div><a href="#" data-section="settings" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem;">Settings</a></div>
+            <div><a href="login.html" data-section="logout" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem;">Logout</a></div>
+        </div>
+    </div>
+
+    <!-- MAIN ADMIN DASHBOARD LAYOUT -->
+    <main style="max-width: 1400px; margin: 100px auto 0; padding: 1.5rem;">
+        <div style="display: flex; flex-direction: row; gap: 1.5rem;">
+
+            <!-- SIDEBAR -->
+            <aside id="sidebar" style="width: 300px; flex-shrink: 0;">
+                <div class="dashboard-card" style="padding: 1.25rem; position: sticky; top: 100px;">
+                    <!-- Admin Info -->
+                    <div style="display: flex; align-items: center; gap: 0.75rem; padding-bottom: 1.25rem; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border);">
+                        <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--gradient-gold); display: flex; align-items: center; justify-content: center; color: black; font-weight: bold; font-size: 1.2rem;">AD</div>
+                        <div>
+                            <p class="font-serif font-bold">Admin User</p>
+                            <p style="font-size: 0.75rem; color: var(--color-secondary-text);">admin@vendora.com</p>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <nav style="display: flex; flex-direction: column; gap: 0.25rem;">
+                        <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-accent); font-weight: bold; padding-left: 0.75rem; margin-bottom: 0.5rem;">Main</p>
+                        
+                        <a href="#" data-section="dashboard" class="sidebar-link active">
+                            <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+                        </a>
+                        <a href="#" data-section="vendors" class="sidebar-link">
+                            <i class="fas fa-store"></i> <span>Vendors</span>
+                            <span class="ml-auto" style="background: var(--color-accent); color: black; font-size: 0.7rem; padding: 0.125rem 0.5rem; border-radius: 999px;">24</span>
+                        </a>
+                        <a href="#" data-section="markets" class="sidebar-link">
+                            <i class="fas fa-calendar-alt"></i> <span>Markets</span>
+                        </a>
+                        <a href="#" data-section="applications" class="sidebar-link">
+                            <i class="fas fa-clipboard-list"></i> <span>Applications</span>
+                            <span class="ml-auto" style="background: #f59e0b; color: white; font-size: 0.7rem; padding: 0.125rem 0.5rem; border-radius: 999px;">8</span>
+                        </a>
+                        <a href="#" data-section="earnings" class="sidebar-link">
+                            <i class="fas fa-chart-line"></i> <span>Earnings</span>
+                        </a>
+                        <a href="#" data-section="users" class="sidebar-link">
+                            <i class="fas fa-users"></i> <span>Users</span>
+                        </a>
+                        <a href="#" data-section="settings" class="sidebar-link">
+                            <i class="fas fa-sliders-h"></i> <span>Settings</span>
+                        </a>
+                        <a href="#" data-section="logout" class="sidebar-link logout" style="margin-top: 1rem;">
+                            <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                        </a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- MAIN CONTENT AREA -->
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1.5rem;">
+
+                <!-- DASHBOARD SECTION (Default) -->
+                <div id="dashboard" class="admin-section">
+                    <!-- Welcome Banner -->
+                    <div class="dashboard-card reveal bg-gradient-gold" style="color: white; padding: 1.5rem;">
+                        <h1 class="font-serif" style="font-size: 1.875rem; font-weight: 700;">Welcome back, Admin! 👑</h1>
+                        <p style="margin-top: 0.5rem; opacity: 0.8;">Here's your Vendora platform overview and analytics.</p>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="dashboard-card reveal" style="padding: 1.5rem;">
+                            <p style="color: var(--color-accent); font-size: 0.7rem; text-transform: uppercase; font-weight: bold;"><i class="fas fa-store"></i> Total Vendors</p>
+                            <p style="font-size: 2rem; font-weight: 900; margin-top: 0.5rem;">128</p>
+                            <p style="font-size: 0.75rem; color: var(--color-secondary-text);">↑ 12 this month</p>
+                        </div>
+                        <div class="dashboard-card reveal" style="padding: 1.5rem;">
+                            <p style="color: var(--color-accent); font-size: 0.7rem; text-transform: uppercase; font-weight: bold;"><i class="fas fa-calendar"></i> Active Markets</p>
+                            <p style="font-size: 2rem; font-weight: 900; margin-top: 0.5rem;">8</p>
+                            <p style="font-size: 0.75rem; color: var(--color-secondary-text);">4 upcoming</p>
+                        </div>
+                        <div class="dashboard-card reveal" style="padding: 1.5rem;">
+                            <p style="color: var(--color-accent); font-size: 0.7rem; text-transform: uppercase; font-weight: bold;"><i class="fas fa-dollar-sign"></i> Total Revenue</p>
+                            <p style="font-size: 2rem; font-weight: 900; margin-top: 0.5rem;">$284K</p>
+                            <p style="font-size: 0.75rem; color: var(--color-secondary-text);">↑ 18% from last month</p>
+                        </div>
+                        <div class="dashboard-card reveal" style="padding: 1.5rem;">
+                            <p style="color: var(--color-accent); font-size: 0.7rem; text-transform: uppercase; font-weight: bold;"><i class="fas fa-file-alt"></i> Pending Apps</p>
+                            <p style="font-size: 2rem; font-weight: 900; margin-top: 0.5rem;">8</p>
+                            <p style="font-size: 0.75rem; color: var(--color-secondary-text);">Need review</p>
+                        </div>
+                    </div>
+
+                    <!-- Recent Vendors Table -->
+                    <div class="dashboard-card reveal" style="padding: 1.5rem;">
+                        <div class="flex-between" style="margin-bottom: 1rem;">
+                            <h2 class="font-serif" style="font-size: 1.25rem; font-weight: 700;"><span class="text-accent">Recent</span> Vendor Registrations</h2>
+                            <a href="#" data-section="vendors" style="color: var(--color-accent); font-size: 0.75rem; font-weight: bold; text-decoration: none; cursor: pointer;">View all →</a>
+                        </div>
+                        <div class="overflow-x-auto custom-scrollbar">
+                            <table style="width: 100%; font-size: 0.875rem;">
+                                <thead style="border-bottom: 1px solid var(--color-border);">
+                                    <tr><th style="padding: 0.75rem 0.5rem; text-align: left;">Vendor</th><th style="padding: 0.75rem 0.5rem; text-align: left;">Business</th><th style="padding: 0.75rem 0.5rem; text-align: left;">Joined</th><th style="padding: 0.75rem 0.5rem; text-align: left;">Status</th><th style="padding: 0.75rem 0.5rem; text-align: left;">Action</th></tr></thead>
+                                <tbody>
+                                    <tr><td style="padding: 0.75rem 0.5rem;">Elena Voss</td><td style="padding: 0.75rem 0.5rem;">Elena Atelier</td><td style="padding: 0.75rem 0.5rem;">Jan 2025</td><td style="padding: 0.75rem 0.5rem;"><span class="badge-active">Active</span></td><td style="padding: 0.75rem 0.5rem;"><button class="btn-outline" style="padding: 0.25rem 0.75rem;">View</button></td></tr>
+                                    <tr><td style="padding: 0.75rem 0.5rem;">Marcus Lee</td><td style="padding: 0.75rem 0.5rem;">Lee Ceramics</td><td style="padding: 0.75rem 0.5rem;">Feb 2026</td><td style="padding: 0.75rem 0.5rem;"><span class="badge-pending">Pending</span></td><td style="padding: 0.75rem 0.5rem;"><button class="btn-outline" style="padding: 0.25rem 0.75rem;">Review</button></td></tr>
+                                    <tr><td style="padding: 0.75rem 0.5rem;">Sophia Patel</td><td style="padding: 0.75rem 0.5rem;">Soul Scents</td><td style="padding: 0.75rem 0.5rem;">Mar 2026</td><td style="padding: 0.75rem 0.5rem;"><span class="badge-active">Active</span></td><td style="padding: 0.75rem 0.5rem;"><button class="btn-outline" style="padding: 0.25rem 0.75rem;">View</button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Markets -->
+                    <div class="dashboard-card reveal" style="padding: 1.5rem;">
+                        <h2 class="font-serif" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;"><span class="text-accent">Upcoming</span> Markets</h2>
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--color-hover); border-radius: 1rem;">
+                                <div><i class="fas fa-crown text-accent"></i> <strong>The Golden Edition</strong><br><span style="font-size: 0.7rem;">Royal Arcade, Mumbai</span></div>
+                                <div class="text-right"><span style="font-weight: 600;">May 15-17, 2026</span><br><span style="font-size: 0.7rem;">24 vendors booked</span></div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--color-hover); border-radius: 1rem;">
+                                <div><i class="fas fa-leaf text-accent"></i> <strong>Artisan Quarter</strong><br><span style="font-size: 0.7rem;">Bandra, Mumbai</span></div>
+                                <div class="text-right"><span style="font-weight: 600;">Apr 28-30, 2026</span><br><span style="font-size: 0.7rem;">18 vendors booked</span></div>
+                            </div>
+                        </div>
+                        <div class="text-center" style="margin-top: 1rem;">
+                            <button class="btn-gold" onclick="activateSection('markets')">Manage Markets</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VENDORS SECTION -->
+                <div id="vendors" class="admin-section hidden">
+                    <div class="dashboard-card" style="padding: 1.5rem;">
+                        <div class="flex-between" style="margin-bottom: 1.5rem;">
+                            <h2 class="font-serif" style="font-size: 1.5rem; font-weight: 700;"><span class="text-accent">All</span> Vendors</h2>
+                            <button class="btn-gold"><i class="fas fa-plus"></i> Add Vendor</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table style="width: 100%; font-size: 0.875rem;">
+                                <thead style="border-bottom: 1px solid var(--color-border);">
+                                    <tr><th style="padding: 0.75rem; text-align: left;">Vendor</th><th style="padding: 0.75rem; text-align: left;">Business</th><th style="padding: 0.75rem; text-align: left;">Category</th><th style="padding: 0.75rem; text-align: left;">Status</th><th style="padding: 0.75rem; text-align: left;">Revenue</th></tr></thead>
+                                <tbody>
+                                    <tr><td style="padding: 0.75rem;">Elena Voss</td><td>Elena Atelier</td><td>Accessories</td><td><span class="badge-active">Active</span></td><td>$12,840</td></tr>
+                                    <tr><td style="padding: 0.75rem;">Marcus Lee</td><td>Lee Ceramics</td><td>Pottery</td><td><span class="badge-pending">Pending</span></td><td>$0</td></tr>
+                                    <tr><td style="padding: 0.75rem;">Sophia Patel</td><td>Soul Scents</td><td>Fragrance</td><td><span class="badge-active">Active</span></td><td>$8,230</td></tr>
+                                    <tr><td style="padding: 0.75rem;">Oliver Chen</td><td>Chen Jewelry</td><td>Jewelry</td><td><span class="badge-active">Active</span></td><td>$22,450</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MARKETS SECTION -->
+                <div id="markets" class="admin-section hidden">
+                    <div class="dashboard-card" style="padding: 1.5rem;">
+                        <div class="flex-between" style="margin-bottom: 1.5rem;">
+                            <h2 class="font-serif" style="font-size: 1.5rem; font-weight: 700;"><span class="text-accent">Market</span> Management</h2>
+                            <button class="btn-gold"><i class="fas fa-plus"></i> Create Market</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table style="width: 100%; font-size: 0.875rem;">
+                                <thead style="border-bottom: 1px solid var(--color-border);">
+                                    <tr><th style="padding: 0.75rem; text-align: left;">Market Name</th><th>Date</th><th>Location</th><th>Vendors</th><th>Status</th></tr></thead>
+                                <tbody>
+                                    <tr><td>The Golden Edition</td><td>May 15-17, 2026</td><td>Royal Arcade</td><td>24/30</td><td><span class="badge-active">Published</span></td></tr>
+                                    <tr><td>Artisan Quarter</td><td>Apr 28-30, 2026</td><td>Bandra</td><td>18/25</td><td><span class="badge-active">Published</span></td></tr>
+                                    <tr><td>Noire Evenings</td><td>Jun 10, 2026</td><td>Jio World Drive</td><td>12/20</td><td><span class="badge-pending">Draft</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- APPLICATIONS SECTION -->
+                <div id="applications" class="admin-section hidden">
+                    <div class="dashboard-card" style="padding: 1.5rem;">
+                        <h2 class="font-serif" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;"><span class="text-accent">Pending</span> Vendor Applications</h2>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div style="padding: 1rem; border: 1px solid var(--color-border); border-radius: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div><i class="fas fa-user-circle text-accent" style="font-size: 1.5rem;"></i> <strong>Marcus Lee</strong><br><span style="font-size: 0.7rem;">Lee Ceramics · Pottery</span></div>
+                                <div style="display: flex; gap: 0.5rem;"><button class="btn-gold" style="background: #10b981; color: white;">Approve</button><button class="btn-outline" style="border-color: #ef4444; color: #ef4444;">Reject</button></div>
+                            </div>
+                            <div style="padding: 1rem; border: 1px solid var(--color-border); border-radius: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div><i class="fas fa-user-circle text-accent" style="font-size: 1.5rem;"></i> <strong>Priya Sharma</strong><br><span style="font-size: 0.7rem;">Pashmina House · Textiles</span></div>
+                                <div style="display: flex; gap: 0.5rem;"><button class="btn-gold" style="background: #10b981; color: white;">Approve</button><button class="btn-outline" style="border-color: #ef4444; color: #ef4444;">Reject</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EARNINGS SECTION -->
+                <div id="earnings" class="admin-section hidden">
+                    <div class="dashboard-card" style="padding: 1.5rem;">
+                        <h2 class="font-serif" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;"><span class="text-accent">Platform</span> Earnings</h2>
+                        <div class="stats-grid" style="margin-top: 0;">
+                            <div style="padding: 1rem; background: var(--color-hover); border-radius: 1rem;"><p class="text-accent">Total Fees Collected</p><p class="text-2xl font-bold">$42,500</p></div>
+                            <div style="padding: 1rem; background: var(--color-hover); border-radius: 1rem;"><p class="text-accent">This Month</p><p class="text-2xl font-bold">$8,240</p></div>
+                            <div style="padding: 1rem; background: var(--color-hover); border-radius: 1rem;"><p class="text-accent">Commission Rate</p><p class="text-2xl font-bold">12%</p></div>
+                            <div style="padding: 1rem; background: var(--color-hover); border-radius: 1rem;"><p class="text-accent">Pending Payouts</p><p class="text-2xl font-bold">$3,890</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- USERS SECTION -->
+                <div id="users" class="admin-section hidden">
+                    <div class="dashboard-card" style="padding: 1.5rem;">
+                        <h2 class="font-serif" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;"><span class="text-accent">System</span> Users</h2>
+                        <div class="overflow-x-auto">
+                            <table style="width: 100%;">
+                                <thead><tr><th style="padding: 0.75rem;">Name</th><th>Email</th><th>Role</th><th>Status</th></tr></thead>
+                                <tbody><tr><td style="padding: 0.75rem;">Admin User</td><td>admin@vendora.com</td><td>Super Admin</td><td><span class="badge-active">Active</span></td></tr>
+                                <tr><td style="padding: 0.75rem;">Sarah Manager</td><td>sarah@vendora.com</td><td>Market Manager</td><td><span class="badge-active">Active</span></td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SETTINGS SECTION -->
+                <div id="settings" class="admin-section hidden">
+                    <div class="dashboard-card" style="padding: 1.5rem;">
+                        <h2 class="font-serif" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;"><span class="text-accent">Platform</span> Settings</h2>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div class="flex-between"><span>Commission Rate</span><input type="text" value="12%" style="background: var(--color-hover); border: 1px solid var(--color-border); padding: 0.5rem; border-radius: 0.5rem; width: 100px;"></div>
+                            <div class="flex-between"><span>Auto-approve Vendors</span><label><input type="checkbox" style="width: 20px; height: 20px;"></label></div>
+                            <button class="btn-gold" style="width: fit-content;">Save Settings</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LOGOUT SECTION -->
+                <div id="logout" class="admin-section hidden">
+                    <div class="dashboard-card text-center" style="padding: 2rem; max-width: 32rem; margin: 0 auto;">
+                        <div style="width: 80px; height: 80px; margin: 0 auto; background: rgba(193,154,107,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--color-accent); margin-bottom: 1rem;"><i class="fas fa-sign-out-alt"></i></div>
+                        <h2 class="font-serif" style="font-size: 1.5rem; font-weight: 700;">Ready to leave?</h2>
+                        <p style="color: var(--color-secondary-text); margin-top: 0.75rem;">Your admin session will end.</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                            <button onclick="alert('Signed out!')" style="background: #ef4444; color: white; padding: 0.5rem 1.5rem; border-radius: 0.75rem; border: none; cursor: pointer;">Sign Out</button>
+                            <button onclick="activateSection('dashboard')" style="background: transparent; border: 1px solid var(--color-border); padding: 0.5rem 1.5rem; border-radius: 0.75rem; cursor: pointer;">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATUS BANNER -->
+                <div class="dashboard-card reveal bg-gradient-gold" style="color: black; padding: 1rem; display: flex; align-items: center; justify-content: space-between;">
+                    <div class="flex-start"><span class="status-pulse" style="background: black;"></span><div><p class="font-bold">Admin Session Active</p><p style="font-size: 0.75rem; opacity: 0.8;">Platform management mode</p></div></div>
+                    <div style="font-size: 0.75rem; font-weight: bold; background: rgba(0,0,0,0.2); padding: 0.5rem 1rem; border-radius: 0.75rem;">8 Pending Reviews</div>
+                </div>
+
+                <!-- FOOTER -->
+                <footer style="text-align: center; font-size: 0.7rem; color: var(--color-secondary-text); border-top: 1px solid var(--color-border); padding-top: 2rem; padding-bottom: 1rem;">
+                    <p>© 2026 Vendora · Luxury Pop-Up Markets & Vendor Platform</p>
+                    <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem;">
+                        <a href="#" style="color: inherit; text-decoration: none;">Privacy</a>
+                        <a href="#" style="color: inherit; text-decoration: none;">Terms</a>
+                        <a href="#" style="color: inherit; text-decoration: none;">Support</a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            // Theme Toggle (Same as index.html)
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+            const lightIcon = document.querySelector('#theme-toggle .fa-moon');
+            const darkIcon = document.querySelector('#theme-toggle .fa-sun');
+            
+            function setTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                if (theme === 'dark') {
+                    if(lightIcon) lightIcon.style.display = 'none';
+                    if(darkIcon) darkIcon.style.display = 'inline-block';
+                } else {
+                    if(lightIcon) lightIcon.style.display = 'inline-block';
+                    if(darkIcon) darkIcon.style.display = 'none';
+                }
+            }
+            
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            setTheme(savedTheme);
+            
+            if(themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                    setTheme(newTheme);
+                });
+            }
+
+            // RTL Toggle
+            const rtlToggle = document.getElementById('rtl-toggle');
+            function setDirection(dir) {
+                html.setAttribute('dir', dir);
+                localStorage.setItem('direction', dir);
+            }
+            const savedDirection = localStorage.getItem('direction') || 'ltr';
+            setDirection(savedDirection);
+            
+            if(rtlToggle) {
+                rtlToggle.addEventListener('click', () => {
+                    setDirection(html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr');
+                });
+            }
+
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
+            const mobilePanel = document.getElementById('mobile-menu-panel');
+            let mobileMenuOpen = false;
+            
+            function toggleMobileMenu() {
+                if (mobileMenuOpen) {
+                    mobilePanel.style.maxHeight = '0';
+                    mobileMenuOpen = false;
+                } else {
+                    mobilePanel.style.maxHeight = '500px';
+                    mobileMenuOpen = true;
+                }
+            }
+            
+            if(mobileMenuBtn && mobilePanel) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
+
+            // Section Navigation
+            const sections = ['dashboard', 'vendors', 'markets', 'applications', 'earnings', 'users', 'settings', 'logout'];
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            
+            window.activateSection = function(sectionId) {
+                sections.forEach(id => {
+                    const el = document.getElementById(id);
+                    if(el) el.classList.add('hidden');
+                });
+                const activeEl = document.getElementById(sectionId);
+                if(activeEl) activeEl.classList.remove('hidden');
+                
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('data-section') === sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                if(mobilePanel && mobileMenuOpen) {
+                    mobilePanel.style.maxHeight = '0';
+                    mobileMenuOpen = false;
+                }
+            };
+            
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const section = link.getAttribute('data-section');
+                    if(section) activateSection(section);
+                });
+            });
+            
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const href = link.getAttribute('href');
+                    if(href && href.startsWith('#')) {
+                        const section = href.substring(1);
+                        if(sections.includes(section)) activateSection(section);
+                    }
+                    if(mobilePanel && mobileMenuOpen) {
+                        mobilePanel.style.maxHeight = '0';
+                        mobileMenuOpen = false;
+                    }
+                });
+            });
+
+            // Scroll Reveal
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            
+            // Show user info on desktop
+            if(window.innerWidth >= 768) {
+                document.querySelector('.user-info-desktop').style.display = 'block';
+            }
+            
+            function handleResize() {
+                const sidebar = document.getElementById('sidebar');
+                if(window.innerWidth < 1024) {
+                    sidebar.style.display = 'none';
+                } else {
+                    sidebar.style.display = 'block';
+                }
+                if(window.innerWidth >= 768) {
+                    if(document.querySelector('.user-info-desktop')) 
+                        document.querySelector('.user-info-desktop').style.display = 'block';
+                } else {
+                    if(document.querySelector('.user-info-desktop'))
+                        document.querySelector('.user-info-desktop').style.display = 'none';
+                }
+            }
+            handleResize();
+            window.addEventListener('resize', handleResize);
+        })();
+    </script>
+    <style>
+        @media (max-width: 1024px) {
+            #sidebar { display: none; }
+            main > div { flex-direction: column; }
+        }
+        @media (min-width: 1025px) {
+            #sidebar { display: block !important; }
+        }
+        .lg\:hidden { display: none; }
+        @media (max-width: 1024px) {
+            .lg\:hidden { display: flex !important; }
+        }
+        .ml-auto { margin-left: auto; }
+        .overflow-x-auto { overflow-x: auto; }
+        .hidden-icon { display: none; }
+        .text-2xl { font-size: 1.5rem; }
+        .font-bold { font-weight: 700; }
+    </style>
+</body>
+</html>

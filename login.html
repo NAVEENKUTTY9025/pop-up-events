@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Login | Vendora — Premium Pop-Up Market & Event Vendor Platform</title>
+  <meta name="description" content="Login to your Vendora vendor account. Access your dashboard, manage events, track sales, and grow your brand.">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Light mode (default) */
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8F8F4;
+      --bg-card: #FFFFFF;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #6b6b6b;
+      --border-color: #e5e5e5;
+      --gold: #C19A6B;
+      --gold-light: #d4af7a;
+      --gold-dark: #a07e50;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --input-bg: #FFFFFF;
+      --input-border: #e0e0e0;
+    }
+
+    /* Dark mode */
+    body.dark {
+      --bg-primary: #0D0D0D;
+      --bg-secondary: #0a0a0a;
+      --bg-card: #141414;
+      --text-primary: #FFFFFF;
+      --text-secondary: #cccccc;
+      --text-muted: #999999;
+      --border-color: #2a2a2a;
+      --gold: #C19A6B;
+      --gold-light: #d4af7a;
+      --shadow: 0 10px 30px rgba(0,0,0,0.5);
+      --input-bg: #1a1a1a;
+      --input-border: #333333;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      color: var(--text-primary);
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .gold-text {
+      color: var(--gold);
+    }
+
+    /* Top Bar - Clean, No Background */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2.5rem;
+      background: transparent;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      transition: opacity 0.3s ease;
+    }
+
+    .logo span {
+      color: var(--gold);
+      font-style: italic;
+      font-family: 'Merriweather', serif;
+    }
+
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(193, 154, 107, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-primary);
+      border: 1px solid rgba(193, 154, 107, 0.25);
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .icon-btn:hover {
+      background: var(--gold);
+      color: #0D0D0D;
+      border-color: var(--gold);
+      transform: scale(1.05);
+    }
+
+    /* Main Login Container - Perfectly Centered */
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
+      padding: 0 1.5rem;
+    }
+
+    /* Tightened Login Card */
+    .login-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 2rem 2rem 2rem 2rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .login-header h1 {
+      font-size: 1.8rem;
+      font-family: 'Merriweather', serif;
+      margin-bottom: 0.25rem;
+    }
+
+    .login-header p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    .gold-divider {
+      width: 50px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.6rem auto 0;
+    }
+
+    /* Form Styles - Tightened */
+    .input-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .input-group .label-icon {
+      margin-right: 6px;
+      color: var(--gold);
+      font-size: 0.8rem;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--input-bg);
+      border: 1.5px solid var(--input-border);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(193, 154, 107, 0.15);
+    }
+
+    .input-field::placeholder {
+      color: var(--text-muted);
+      opacity: 0.5;
+      font-size: 0.85rem;
+    }
+
+    /* Options Row - Tightened */
+    .options-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      color: var(--text-secondary);
+    }
+
+    .checkbox input {
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+      accent-color: var(--gold);
+    }
+
+    .forgot-link {
+      color: var(--gold);
+      text-decoration: none;
+      transition: 0.2s;
+      font-size: 0.8rem;
+    }
+
+    .forgot-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Login Button */
+    .btn-login {
+      width: 100%;
+      background: var(--gold);
+      color: #0D0D0D;
+      font-weight: 600;
+      padding: 0.75rem;
+      border-radius: 10px;
+      border: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-login:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(193, 154, 107, 0.25);
+    }
+
+    /* Divider - Tightened */
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 1.5rem 0;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .divider span {
+      padding: 0 1rem;
+    }
+
+    /* Social Login - Tightened */
+    .social-login {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+    }
+
+    .social-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.65rem;
+      background: transparent;
+      border: 1.5px solid var(--border-color);
+      border-radius: 10px;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .social-btn i {
+      font-size: 1rem;
+    }
+
+    /* Register Link - Tightened */
+    .register-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .register-link a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Demo Credentials Hint - Tightened */
+    .demo-hint {
+      background: rgba(193, 154, 107, 0.08);
+      border-radius: 10px;
+      padding: 0.7rem;
+      margin-top: 1.2rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      border-left: 3px solid var(--gold);
+    }
+
+    .demo-hint i {
+      color: var(--gold);
+      margin-right: 5px;
+      font-size: 0.7rem;
+    }
+
+    /* No scroll - body fixed */
+    body {
+      overflow: hidden;
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      .top-bar {
+        padding: 0 1.2rem;
+        height: 60px;
+      }
+      .logo {
+        font-size: 1.4rem;
+      }
+      .login-card {
+        padding: 1.5rem;
+        max-width: 380px;
+      }
+      .login-header h1 {
+        font-size: 1.5rem;
+      }
+      .social-btn {
+        font-size: 0.7rem;
+        padding: 0.55rem;
+      }
+      .icon-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .social-login {
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .options-row {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top Bar - Clean, No Background, Just Logo and Controls -->
+<div class="top-bar">
+  <a href="index.html" class="logo"><span>Vendora</span></a>
+  <div class="controls">
+    <button id="rtl-toggle" class="icon-btn" title="RTL Mode"><i class="fas fa-exchange-alt"></i></button>
+    <button id="theme-toggle" class="icon-btn" title="Dark/Light Mode"><i class="fas fa-moon"></i></button>
+  </div>
+</div>
+
+<!-- Login Container - Perfectly Centered -->
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>Welcome <span class="gold-text">Back</span></h1>
+      <div class="gold-divider"></div>
+      <p>Login to your Vendora account</p>
+    </div>
+
+    <form id="loginForm" onsubmit="return handleLogin(event)">
+      <div class="input-group">
+        <label><i class="fas fa-envelope label-icon"></i> Email</label>
+        <input type="email" class="input-field" id="email" placeholder="hello@vendora.com" required value="vendor@vendora.com">
+      </div>
+
+      <div class="input-group">
+        <label><i class="fas fa-lock label-icon"></i> Password</label>
+        <input type="password" class="input-field" id="password" placeholder="••••••••" required value="demo123">
+      </div>
+
+      <div class="options-row">
+        <label class="checkbox">
+          <input type="checkbox" id="remember"> Remember me
+        </label>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-login">
+        <i class="fas fa-sign-in-alt"></i> Sign In
+      </button>
+    </form>
+
+    <div class="divider">
+      <span>or</span>
+    </div>
+
+    <div class="social-login">
+      <a href="#" class="social-btn" onclick="socialLogin(event, 'google')">
+        <i class="fab fa-google"></i> Google
+      </a>
+      <a href="#" class="social-btn" onclick="socialLogin(event, 'facebook')">
+        <i class="fab fa-facebook-f"></i> Facebook
+      </a>
+      <a href="#" class="social-btn" onclick="socialLogin(event, 'apple')">
+        <i class="fab fa-apple"></i> Apple
+      </a>
+    </div>
+
+    <div class="register-link">
+      New to Vendora? <a href="register.html">Create account</a>
+    </div>
+
+    
+  </div>
+</div>
+
+<script>
+  // Theme Toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+  
+  function updateThemeIcon(isDark) {
+    if(themeToggle) {
+      themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+  }
+  
+  function toggleTheme() {
+    body.classList.toggle('dark');
+    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+    updateThemeIcon(body.classList.contains('dark'));
+  }
+  
+  // Check for saved theme preference
+  if(localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+    updateThemeIcon(true);
+  } else if(window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('theme')) {
+    body.classList.add('dark');
+    updateThemeIcon(true);
+  }
+  
+  themeToggle?.addEventListener('click', toggleTheme);
+  
+  // RTL Toggle
+  const rtlToggle = document.getElementById('rtl-toggle');
+  const htmlEl = document.documentElement;
+  
+  function applyRTLStyles(isRTL) {
+    const elements = document.querySelectorAll('.input-field, .btn-login, .social-btn, .register-link, .demo-hint');
+    elements.forEach(el => {
+      if(isRTL) {
+        el.style.textAlign = 'right';
+      } else {
+        el.style.textAlign = '';
+      }
+    });
+    
+    const checkboxes = document.querySelectorAll('.checkbox');
+    checkboxes.forEach(cb => {
+      if(isRTL) {
+        cb.style.direction = 'rtl';
+        cb.style.justifyContent = 'flex-end';
+      } else {
+        cb.style.direction = '';
+        cb.style.justifyContent = '';
+      }
+    });
+    
+    const optionsRow = document.querySelector('.options-row');
+    if(optionsRow) {
+      if(isRTL) {
+        optionsRow.style.flexDirection = 'row-reverse';
+      } else {
+        optionsRow.style.flexDirection = '';
+      }
+    }
+    
+    const labelIcons = document.querySelectorAll('.label-icon');
+    labelIcons.forEach(icon => {
+      if(isRTL) {
+        icon.style.marginLeft = '6px';
+        icon.style.marginRight = '0';
+      } else {
+        icon.style.marginLeft = '';
+        icon.style.marginRight = '';
+      }
+    });
+    
+    const demoIcon = document.querySelector('.demo-hint i');
+    if(demoIcon) {
+      if(isRTL) {
+        demoIcon.style.marginLeft = '5px';
+        demoIcon.style.marginRight = '0';
+      } else {
+        demoIcon.style.marginLeft = '';
+        demoIcon.style.marginRight = '';
+      }
+    }
+  }
+  
+  function toggleRTL() {
+    if(htmlEl.getAttribute('dir') === 'rtl') {
+      htmlEl.removeAttribute('dir');
+      localStorage.setItem('direction', 'ltr');
+      applyRTLStyles(false);
+    } else {
+      htmlEl.setAttribute('dir', 'rtl');
+      localStorage.setItem('direction', 'rtl');
+      applyRTLStyles(true);
+    }
+  }
+  
+  if(localStorage.getItem('direction') === 'rtl') {
+    htmlEl.setAttribute('dir', 'rtl');
+    applyRTLStyles(true);
+  }
+  
+  rtlToggle?.addEventListener('click', () => {
+    toggleRTL();
+  });
+  
+  // Handle Login Form Submission
+  function handleLogin(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const remember = document.getElementById('remember').checked;
+    
+    if(!email || !password) {
+      showNotification('Please fill in all fields', 'error');
+      return false;
+    }
+    
+    if(!email.includes('@')) {
+      showNotification('Please enter a valid email address', 'error');
+      return false;
+    }
+    
+    if(password.length < 3) {
+      showNotification('Password must be at least 3 characters', 'error');
+      return false;
+    }
+    
+    console.log('Login attempt:', { email, password, remember });
+    showNotification('Login successful! Redirecting...', 'success');
+    
+    if(remember) {
+      localStorage.setItem('vendora_user', email);
+      localStorage.setItem('vendora_logged_in', 'true');
+    } else {
+      sessionStorage.setItem('vendora_logged_in', 'true');
+    }
+    
+    setTimeout(() => {
+      window.location.href = 'vendor-dashboard.html';
+    }, 1500);
+    
+    return false;
+  }
+  
+  // Social Login Handler
+  function socialLogin(event, provider) {
+    event.preventDefault();
+    showNotification(`${provider} login coming soon`, 'info');
+  }
+  
+  // Notification System
+  function showNotification(message, type = 'info') {
+    const existingNotification = document.querySelector('.custom-notification');
+    if(existingNotification) {
+      existingNotification.remove();
+    }
+    
+    const notification = document.createElement('div');
+    notification.className = `custom-notification ${type}`;
+    notification.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+        <span>${message}</span>
+      </div>
+    `;
+    
+    notification.style.position = 'fixed';
+    notification.style.bottom = '20px';
+    notification.style.left = '50%';
+    notification.style.transform = 'translateX(-50%)';
+    notification.style.padding = '10px 20px';
+    notification.style.borderRadius = '10px';
+    notification.style.fontSize = '0.8rem';
+    notification.style.fontWeight = '500';
+    notification.style.zIndex = '1000';
+    notification.style.minWidth = '250px';
+    notification.style.textAlign = 'center';
+    notification.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+    notification.style.backdropFilter = 'blur(10px)';
+    notification.style.fontFamily = "'Inter', sans-serif";
+    
+    if(type === 'success') {
+      notification.style.background = '#10b981';
+      notification.style.color = '#ffffff';
+    } else if(type === 'error') {
+      notification.style.background = '#ef4444';
+      notification.style.color = '#ffffff';
+    } else {
+      notification.style.background = 'var(--gold)';
+      notification.style.color = '#0D0D0D';
+    }
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      notification.style.transition = 'opacity 0.3s';
+      setTimeout(() => {
+        if(notification.parentNode) notification.remove();
+      }, 300);
+    }, 2500);
+  }
+  
+  // Enter key support
+  const loginForm = document.getElementById('loginForm');
+  if(loginForm) {
+    loginForm.addEventListener('keypress', function(e) {
+      if(e.key === 'Enter') {
+        handleLogin(e);
+      }
+    });
+  }
+  
+  // Fix RTL on resize
+  window.addEventListener('resize', () => {
+    if(htmlEl.getAttribute('dir') === 'rtl') {
+      applyRTLStyles(true);
+    }
+  });
+</script>
+
+<style>
+  /* RTL specific adjustments */
+  [dir="rtl"] .input-group label .label-icon {
+    margin-left: 6px;
+    margin-right: 0;
+  }
+  
+  [dir="rtl"] .checkbox {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+  
+  [dir="rtl"] .checkbox input {
+    margin-left: 6px;
+    margin-right: 0;
+  }
+  
+  [dir="rtl"] .btn-login i,
+  [dir="rtl"] .social-btn i {
+    margin-left: 8px;
+    margin-right: 0;
+  }
+  
+  [dir="rtl"] .demo-hint i {
+    margin-left: 5px;
+    margin-right: 0;
+  }
+  
+  [dir="rtl"] .forgot-link {
+    text-align: left;
+  }
+  
+  [dir="rtl"] .options-row {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+  
+  [dir="rtl"] .register-link a {
+    margin-left: 0;
+    margin-right: 4px;
+  }
+  
+  @media (max-width: 380px) {
+    [dir="rtl"] .options-row {
+      flex-direction: column-reverse;
+      align-items: flex-end;
+    }
+  }
+</style>
+
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>404 - Page Not Found | Vendora</title>
+  <meta name="description" content="The page you're looking for doesn't exist. Return to Vendora's premium pop-up market platform.">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Light mode (default) */
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8F8F4;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #6b6b6b;
+      --gold: #C19A6B;
+      --gold-light: #d4af7a;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    /* Dark mode */
+    body.dark {
+      --bg-primary: #0D0D0D;
+      --bg-secondary: #0a0a0a;
+      --text-primary: #FFFFFF;
+      --text-secondary: #cccccc;
+      --text-muted: #999999;
+      --gold: #C19A6B;
+      --gold-light: #d4af7a;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      color: var(--text-primary);
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .gold-text {
+      color: var(--gold);
+    }
+
+    /* Top Bar - Only Logo (Left) and Controls (Right) */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2.5rem;
+      background: transparent;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      transition: opacity 0.3s ease;
+    }
+
+    .logo span {
+      color: var(--gold);
+      font-style: italic;
+      font-family: 'Merriweather', serif;
+    }
+
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(193, 154, 107, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-primary);
+      border: 1px solid rgba(193, 154, 107, 0.25);
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .icon-btn:hover {
+      background: var(--gold);
+      color: #0D0D0D;
+      border-color: var(--gold);
+      transform: scale(1.05);
+    }
+
+    /* Main 404 Container - Perfectly Centered */
+    .error-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
+      padding: 0 1.5rem;
+    }
+
+    .error-card {
+      text-align: center;
+      max-width: 550px;
+      width: 100%;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 404 Number Styling */
+    .error-code {
+      font-size: 8rem;
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      text-shadow: 4px 4px 12px rgba(193, 154, 107, 0.2);
+    }
+
+    @media (max-width: 550px) {
+      .error-code {
+        font-size: 6rem;
+      }
+    }
+
+    .error-icon {
+      font-size: 4rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+
+    .error-title {
+      font-size: 1.8rem;
+      font-family: 'Merriweather', serif;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .error-message {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .gold-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1rem auto 1.5rem;
+    }
+
+    /* Button Styles */
+    .btn-home {
+      background: var(--gold);
+      color: #0D0D0D;
+      font-weight: 600;
+      padding: 0.85rem 2rem;
+      border-radius: 0;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-home:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.85rem 2rem;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: #0D0D0D;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    /* Help Text */
+    .help-text {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .help-text a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .help-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* No scroll - body fixed */
+    body {
+      overflow: hidden;
+    }
+
+    /* Responsive */
+    @media (max-width: 550px) {
+      .top-bar {
+        padding: 0 1.2rem;
+        height: 70px;
+      }
+      .logo {
+        font-size: 1.4rem;
+      }
+      .icon-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+      }
+      .error-title {
+        font-size: 1.4rem;
+      }
+      .error-message {
+        font-size: 0.85rem;
+      }
+      .btn-home, .btn-outline {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .button-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .btn-home, .btn-outline {
+        margin-right: 0;
+        width: 200px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top Bar - Only Logo (Left) and Controls (Right) - No Navbar, No Footer -->
+<div class="top-bar">
+  <a href="index.html" class="logo"><span>Vendora</span></a>
+  <div class="controls">
+    <button id="rtl-toggle" class="icon-btn" title="RTL Mode"><i class="fas fa-exchange-alt"></i></button>
+    <button id="theme-toggle" class="icon-btn" title="Dark/Light Mode"><i class="fas fa-moon"></i></button>
+  </div>
+</div>
+
+<!-- Main 404 Container -->
+<div class="error-container">
+  <div class="error-card">
+    <div class="error-icon">
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="error-code">404</div>
+    <h1 class="error-title">Page Not <span class="gold-text">Found</span></h1>
+    <div class="gold-divider"></div>
+    <p class="error-message">
+      Oops! The page you're looking for seems to have wandered off to explore our pop-up markets.<br>
+      Let's get you back on track.
+    </p>
+    
+    <div class="button-group">
+      <a href="index.html" class="btn-home">
+        <i class="fas fa-home"></i> Back to Home
+      </a>
+      <a href="#" class="btn-outline">
+        <i class="fas fa-arrow-left"></i> Go Back
+      </a>
+    </div>
+    
+    <div class="help-text">
+      <i class="fas fa-question-circle"></i> Need help? <a href="#">Contact Support</a> or browse our <a href="#">Featured Markets</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Theme Toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+  
+  function updateThemeIcon(isDark) {
+    if(themeToggle) {
+      themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+  }
+  
+  function toggleTheme() {
+    body.classList.toggle('dark');
+    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+    updateThemeIcon(body.classList.contains('dark'));
+  }
+  
+  // Check for saved theme preference
+  if(localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+    updateThemeIcon(true);
+  } else if(window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('theme')) {
+    body.classList.add('dark');
+    updateThemeIcon(true);
+  }
+  
+  themeToggle?.addEventListener('click', toggleTheme);
+  
+  // RTL Toggle
+  const rtlToggle = document.getElementById('rtl-toggle');
+  const htmlEl = document.documentElement;
+  
+  function applyRTLStyles(isRTL) {
+    const elements = document.querySelectorAll('.error-message, .help-text, .btn-home, .btn-outline');
+    elements.forEach(el => {
+      if(isRTL) {
+        el.style.textAlign = 'right';
+      } else {
+        el.style.textAlign = '';
+      }
+    });
+    
+    const buttonGroup = document.querySelector('.button-group');
+    if(buttonGroup) {
+      if(isRTL) {
+        buttonGroup.style.direction = 'rtl';
+      } else {
+        buttonGroup.style.direction = '';
+      }
+    }
+  }
+  
+  function toggleRTL() {
+    if(htmlEl.getAttribute('dir') === 'rtl') {
+      htmlEl.removeAttribute('dir');
+      localStorage.setItem('direction', 'ltr');
+      applyRTLStyles(false);
+    } else {
+      htmlEl.setAttribute('dir', 'rtl');
+      localStorage.setItem('direction', 'rtl');
+      applyRTLStyles(true);
+    }
+  }
+  
+  if(localStorage.getItem('direction') === 'rtl') {
+    htmlEl.setAttribute('dir', 'rtl');
+    applyRTLStyles(true);
+  }
+  
+  rtlToggle?.addEventListener('click', () => {
+    toggleRTL();
+  });
+  
+  // Add some interactive animation on hover
+  const errorCode = document.querySelector('.error-code');
+  if(errorCode) {
+    errorCode.addEventListener('mouseenter', () => {
+      errorCode.style.transform = 'scale(1.05)';
+      errorCode.style.transition = 'transform 0.3s ease';
+    });
+    errorCode.addEventListener('mouseleave', () => {
+      errorCode.style.transform = 'scale(1)';
+    });
+  }
+</script>
+
+<style>
+  /* RTL specific adjustments */
+  [dir="rtl"] .btn-home i,
+  [dir="rtl"] .btn-outline i {
+    margin-left: 8px;
+    margin-right: 0;
+  }
+  
+  [dir="rtl"] .button-group {
+    flex-direction: row-reverse;
+  }
+  
+  [dir="rtl"] .help-text i {
+    margin-left: 5px;
+    margin-right: 0;
+  }
+  
+  @media (max-width: 400px) {
+    [dir="rtl"] .button-group {
+      flex-direction: column-reverse;
+    }
+  }
+</style>
+
+</body>
+</html>

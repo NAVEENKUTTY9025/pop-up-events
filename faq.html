@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>FAQ | Vendora — Premium Pop-Up Market & Event Vendor Platform</title>
+  <meta name="description" content="Find answers to common questions about becoming a Vendora vendor, event participation, pricing, logistics, and support.">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Light mode (default) */
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8F8F4;
+      --bg-card: #FFFFFF;
+      --bg-nav: #0D0D0D;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #6b6b6b;
+      --border-color: #e5e5e5;
+      --gold: #C19A6B;
+      --gold-light: #d4af7a;
+      --gold-dark: #a07e50;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --nav-text: #FFFFFF;
+      --footer-text: #FFFFFF;
+      --footer-text-muted: #aaaaaa;
+      --footer-bg: #0D0D0D;
+      --active-bg: rgba(193,154,107,0.2);
+    }
+
+    /* Dark mode */
+    body.dark {
+      --bg-primary: #0D0D0D;
+      --bg-secondary: #0a0a0a;
+      --bg-card: #141414;
+      --bg-nav: #0D0D0D;
+      --text-primary: #FFFFFF;
+      --text-secondary: #cccccc;
+      --text-muted: #999999;
+      --border-color: #2a2a2a;
+      --gold: #C19A6B;
+      --gold-light: #d4af7a;
+      --shadow: 0 10px 30px rgba(0,0,0,0.5);
+      --nav-text: #FFFFFF;
+      --footer-text: #FFFFFF;
+      --footer-text-muted: #aaaaaa;
+      --footer-bg: #0D0D0D;
+      --active-bg: rgba(193,154,107,0.25);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      scroll-behavior: smooth;
+      line-height: 1.5;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .font-serif {
+      font-family: 'Merriweather', serif;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fadeInUp 0.8s ease-out; }
+
+    .gold-text { color: var(--gold); }
+    .gold-divider {
+      width: 70px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.8rem auto 2rem;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #0D0D0D;
+      font-weight: 600;
+      padding: 0.85rem 2rem;
+      border-radius: 0;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-gold:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+    .btn-outline-gold {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.75rem 1.8rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-outline-gold:hover {
+      background: var(--gold);
+      color: #0D0D0D;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background: var(--bg-nav);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .flex-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+    .nav-logo-text {
+      font-size: 1.8rem !important;
+      font-weight: 700 !important;
+      color: var(--nav-text);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .nav-logo-text span {
+      color: var(--gold);
+      font-style: italic;
+      font-family: 'Merriweather', serif;
+    }
+    .nav-menu-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      margin: 0 2rem;
+    }
+    .nav-links-group {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      color: var(--nav-text);
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .nav-link:hover { color: var(--gold); background: rgba(193,154,107,0.15); }
+    .nav-link.active {
+      color: var(--gold);
+      background: var(--active-bg);
+      border-bottom: 2px solid var(--gold);
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+    .dropdown-container {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-btn {
+      background: none;
+      border: none;
+      color: var(--nav-text);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .dropdown-btn:hover { color: var(--gold); background: rgba(193,154,107,0.15); }
+    .dropdown-menu {
+      position: absolute;
+      left: 0;
+      margin-top: 0.5rem;
+      width: 200px;
+      background: var(--bg-card);
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      transform: translateY(10px);
+      z-index: 60;
+      border: 1px solid var(--border-color);
+    }
+    .dropdown-container:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 0.75rem 1.2rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    .dropdown-menu a:hover { background: rgba(193,154,107,0.1); color: var(--gold); }
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: rgba(193,154,107,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--nav-text);
+      border: none;
+      transition: 0.2s;
+    }
+    .icon-btn:hover { background: var(--gold); color: #0D0D0D; }
+    .login-btn {
+      background: var(--gold);
+      color: #0D0D0D;
+      padding: 0.5rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: 0.3s;
+    }
+    .login-btn:hover { background: var(--gold-light); transform: scale(1.02); }
+    
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+    .hamburger-icon, .close-icon { font-size: 1.8rem; color: var(--nav-text); }
+    .close-icon { display: none; }
+    .mobile-menu-btn.active .hamburger-icon { display: none; }
+    .mobile-menu-btn.active .close-icon { display: block; }
+    .mobile-menu-panel {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      background: var(--bg-nav);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      z-index: 999;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+    }
+    .mobile-menu-panel.show { max-height: calc(100vh - 80px); overflow-y: auto; }
+    .mobile-menu-inner { padding: 0.5rem 0; }
+    .mobile-nav-item { border-bottom: 1px solid rgba(193,154,107,0.1); }
+    .mobile-nav-link {
+      color: var(--nav-text);
+      text-decoration: none;
+      display: block;
+      padding: 1rem 1.5rem;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .mobile-nav-link:hover { color: var(--gold); background: rgba(193,154,107,0.1); }
+    .mobile-nav-link.active {
+      color: var(--gold);
+      background: rgba(193,154,107,0.2);
+      border-left: 3px solid var(--gold);
+    }
+    .mobile-dropdown-item {
+      border-bottom: 1px solid rgba(193,154,107,0.1);
+    }
+    .mobile-dropdown-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--nav-text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .mobile-dropdown-btn:hover { color: var(--gold); background: rgba(193,154,107,0.1); }
+    .mobile-dropdown-icon {
+      transition: transform 0.3s ease;
+    }
+    .mobile-dropdown-icon.rotated {
+      transform: rotate(180deg);
+    }
+    .mobile-submenu {
+      padding-left: 1.5rem;
+      background: rgba(0,0,0,0.2);
+      display: none;
+      overflow: hidden;
+    }
+    .mobile-submenu.show {
+      display: block;
+    }
+    .mobile-submenu a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--nav-text);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: 0.2s;
+      border-left: 2px solid transparent;
+    }
+    .mobile-submenu a:hover {
+      color: var(--gold);
+      opacity: 1;
+      border-left-color: var(--gold);
+      background: rgba(193,154,107,0.05);
+    }
+    .mobile-login-btn {
+      display: inline-block;
+      margin: 1rem 1.5rem;
+      background: var(--gold);
+      color: #0D0D0D;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      text-align: center;
+    }
+    .mobile-theme-rtl {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid rgba(193,154,107,0.15);
+      flex-wrap: wrap;
+    }
+    .mobile-icon-btn {
+      background: rgba(193,154,107,0.2);
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      color: var(--nav-text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mobile-icon-btn:hover { background: var(--gold); color: #0D0D0D; }
+    
+    @media (max-width: 1180px) {
+      .nav-menu-container, .nav-buttons { display: none; }
+      .mobile-menu-btn { display: block; }
+    }
+
+    /* container & sections */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 100px 0; border-bottom: 1px solid var(--border-color); }
+    .section-title {
+      font-size: 3rem;
+      font-family: 'Merriweather', serif;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 2rem;
+      transition: all 0.3s;
+      border-radius: 4px;
+    }
+    .card:hover { border-color: var(--gold); transform: translateY(-6px); }
+    .card-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem; }
+    
+    /* FAQ Accordion Styles */
+    .faq-category {
+      margin-bottom: 2.5rem;
+    }
+    .faq-category-title {
+      font-size: 1.8rem;
+      font-family: 'Merriweather', serif;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gold);
+      display: inline-block;
+    }
+    .accordion-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .accordion-item:hover {
+      border-color: var(--gold);
+    }
+    .accordion-header {
+      width: 100%;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-card);
+      border: none;
+      text-align: left;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .accordion-header:hover {
+      color: var(--gold);
+    }
+    .accordion-header i {
+      color: var(--gold);
+      transition: transform 0.3s ease;
+    }
+    .accordion-header.active i {
+      transform: rotate(180deg);
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      padding: 0 1.5rem;
+      color: var(--text-secondary);
+      border-top: none;
+    }
+    .accordion-content.show {
+      max-height: 500px;
+      padding: 0 1.5rem 1.25rem 1.5rem;
+    }
+    .accordion-content p {
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+    .accordion-content ul {
+      margin-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .accordion-content li {
+      margin-bottom: 0.5rem;
+    }
+    .contact-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .full-width-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    .cta-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--gold);
+      text-align: center;
+      padding: 3rem;
+      margin-top: 1rem;
+    }
+    
+    /* footer */
+    footer {
+      background: var(--footer-bg);
+      padding-top: 80px;
+      padding-bottom: 40px;
+      border-top: 1px solid rgba(193,154,107,0.2);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .footer-logo {
+      font-size: 1.8rem !important;
+      font-weight: 700 !important;
+      color: var(--footer-text);
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--gold); font-style: italic; font-family: 'Merriweather', serif; }
+    .footer-col h4 { font-size: 1.2rem; margin-bottom: 1.2rem; color: var(--footer-text); }
+    .footer-col a, .footer-col p { color: var(--footer-text-muted); text-decoration: none; display: block; margin-bottom: 0.6rem; font-size: 0.85rem; }
+    .footer-col a:hover { color: var(--gold); }
+    .social-icons a { display: inline-block; margin-right: 1rem; font-size: 1.2rem; color: var(--footer-text-muted); }
+    .social-icons a:hover { color: var(--gold); }
+    .footer-copyright {
+      border-top: 1px solid rgba(193,154,107,0.15);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: var(--footer-text-muted);
+      font-size: 0.8rem;
+    }
+    @media (max-width: 1024px) {
+      .section-title { font-size: 2.5rem; }
+      .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .section-title { font-size: 2rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      section { padding: 60px 0; }
+      .faq-category-title { font-size: 1.4rem; }
+      .accordion-header { font-size: 0.95rem; padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="flex-nav">
+      <div><a href="index.html" class="nav-logo-text"><span>Vendora</span></a></div>
+      <div class="nav-menu-container">
+        <div class="nav-links-group">
+          <div class="dropdown-container">
+            <button class="dropdown-btn">Home <i class="fas fa-chevron-down"></i></button>
+            <div class="dropdown-menu"><a href="index.html">Home 1</a><a href="home2.html">Home 2</a></div>
+          </div>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="vendor.html" class="nav-link">Vendors</a>
+          <a href="process.html" class="nav-link">Process</a>
+          <a href="service.html" class="nav-link">Service</a>
+          <a href="faq.html" class="nav-link active">FAQ</a>
+          <div class="dropdown-container">
+            <button class="dropdown-btn">Portal <i class="fas fa-chevron-down"></i></button>
+            <div class="dropdown-menu"><a href="admin.html">Admin Dashboard</a><a href="user.html">Vendor Dashboard</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-buttons">
+        <a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="register.html" class="login-btn"><i class="fas fa-user-plus"></i> Register</a>
+        <button id="rtl-toggle" class="icon-btn" title="RTL"><i class="fas fa-exchange-alt"></i></button>
+        <button id="theme-toggle" class="icon-btn" title="Theme"><i class="fas fa-moon"></i></button>
+      </div>
+      <button id="mobile-menu-btn" class="mobile-menu-btn">
+        <i class="fas fa-bars hamburger-icon"></i>
+        <i class="fas fa-times close-icon"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu Panel -->
+  <div id="mobile-menu-panel" class="mobile-menu-panel">
+    <div class="mobile-menu-inner">
+      <div class="mobile-dropdown-item">
+        <button class="mobile-dropdown-btn" id="mobileHomeDropdownBtn">
+          Home <i class="fas fa-chevron-down mobile-dropdown-icon" id="mobileHomeIcon"></i>
+        </button>
+        <div class="mobile-submenu" id="mobileHomeSubmenu">
+          <a href="index.html">Home 1</a>
+          <a href="home2.html">Home 2</a>
+        </div>
+      </div>
+      <div class="mobile-nav-item"><a href="about.html" class="mobile-nav-link">About</a></div>
+      <div class="mobile-nav-item"><a href="vendor.html" class="mobile-nav-link">Vendors</a></div>
+      <div class="mobile-nav-item"><a href="process.html" class="mobile-nav-link">Process</a></div>
+      <div class="mobile-nav-item"><a href="service.html" class="mobile-nav-link">Service</a></div>
+      <div class="mobile-nav-item"><a href="faq.html" class="mobile-nav-link active">FAQ</a></div>
+      <div class="mobile-dropdown-item">
+        <button class="mobile-dropdown-btn" id="mobilePortalDropdownBtn">
+          Portal <i class="fas fa-chevron-down mobile-dropdown-icon" id="mobilePortalIcon"></i>
+        </button>
+        <div class="mobile-submenu" id="mobilePortalSubmenu">
+          <a href="admin.html">Admin Dashboard</a>
+          <a href="user.html">Vendor Dashboard</a>
+        </div>
+      </div>
+      <div class="mobile-nav-item">
+        <a href="login.html" class="mobile-login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="register.html" class="mobile-login-btn"><i class="fas fa-user-plus"></i>Register</a>
+      </div>
+      <div class="mobile-theme-rtl">
+        <button id="mobile-theme-toggle" class="mobile-icon-btn"><i class="fas fa-moon"></i> Theme</button>
+        <button id="mobile-rtl-toggle" class="mobile-icon-btn"><i class="fas fa-exchange-alt"></i> RTL</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- SECTION 1: Hero -->
+<section style="padding-top: 120px;">
+  <div class="container">
+    <div class="grid-2">
+      <div class="animate-fade-in">
+        <h1 class="font-serif" style="font-size: 3rem; margin-bottom: 1.5rem;">Frequently Asked <span class="gold-text">Questions</span></h1>
+        <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1.5rem;">Everything you need to know about becoming a Vendora vendor, participating in our premium pop-up markets, and growing your brand with us.</p>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Can't find what you're looking for? Our vendor success team is always here to help.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#faq-sections" class="btn-gold">Browse FAQs <i class="fas fa-chevron-down"></i></a>
+          <a href="#contact" class="btn-outline-gold">Contact Support</a>
+        </div>
+      </div>
+      <div>
+        <img class="full-width-img" src="https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=2070&auto=format" alt="Customer support and FAQ illustration" style="max-height: 400px; object-fit: cover; width: 100%; border-radius: 16px;">
+        <div class="img-caption">24/7 Vendor Support — We're here for you</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: FAQ Accordion -->
+<section id="faq-sections" style="background: var(--bg-secondary);">
+  <div class="container">
+    <h2 class="section-title">Got <span class="gold-text">Questions?</span> We've Got Answers.</h2>
+    <div class="gold-divider"></div>
+    
+    <!-- Category 1: Becoming a Vendor -->
+    <div class="faq-category">
+      <h3 class="faq-category-title"><i class="fas fa-user-plus gold-text" style="margin-right: 0.75rem;"></i> Becoming a Vendor</h3>
+      <div class="accordion-item">
+        <button class="accordion-header">What are the requirements to become a Vendora vendor? <i class="fas fa-chevron-down"></i></button>
+        <div class="accordion-content"><p>We look for brands that offer high-quality, unique products with a strong aesthetic. Requirements include:</p><ul><li>Original product designs or curated collections</li><li>Professional product photography</li><li>Previous market or retail experience (preferred but not mandatory)</li><li>Valid business license or tax ID</li><li>Liability insurance (can be arranged through our partners)</li></ul><p>Our curatorial committee reviews each application individually.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">How long does the application review process take? <i class="fas fa-chevron-down"></i></button>
+        <div class="accordion-content"><p>Most applications are reviewed within <strong>5-7 business days</strong>. You'll receive an email notification with our decision. During peak seasons, reviews may take up to 10 business days.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">Is there an application fee? <i class="fas fa-chevron-down"></i></button>
+        <div class="accordion-content"><p>No, applying to become a Vendora vendor is completely <strong>free</strong>. You only pay when you secure a booth at one of our events. The application process has no hidden costs.</p></div>
+      </div>
+    </div>
+
+    <!-- Category 2: Events & Booth Pricing -->
+    <div class="faq-category">
+      <h3 class="faq-category-title"><i class="fas fa-calendar-alt gold-text" style="margin-right: 0.75rem;"></i> Events & Pricing</h3>
+      <div class="accordion-item">
+        <button class="accordion-header">How much does a booth cost? <i class="fas fa-chevron-down"></i></button>
+        <div class="accordion-content"><p>Booth pricing varies by event tier and booth size:</p><ul><li><strong>Boutique Vendor:</strong> $250/event (6x3 ft)</li><li><strong>Premium Vendor:</strong> $450/event (8x4 ft)</li><li><strong>Signature Vendor:</strong> $750/event (10x8 ft corner booth)</li></ul><p>Prices exclude applicable taxes. Multi-event packages offer discounted rates.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">What's included in the booth fee? <i class="fas fa-chevron-down"></i></button>
+        <div class="accordion-content"><p>Your booth fee includes: table and chairs (for most events), basic electricity access, Wi-Fi, event marketing inclusion, on-site vendor support, and post-event sales analytics. Premium and Signature tiers include additional benefits like featured social media posts and lookbook features.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">How often do events take place? <i class="fas fa-chevron-down"></i></button>
+        <div class="accordion-content"><p>We host <strong>15-20 premium pop-up events annually</strong> across major cities. Events range from monthly rooftop markets to quarterly flagship festivals. Vendors receive early access to the event calendar via our portal.</p></div>
+      </div>
+    </div>
+
+    <!-- Category 3: Payments & Logistics -->
+    <div class="faq-category">
+      <h3 class="faq-category-title"><i class="fas fa-coins gold-text" style="margin-right: 0.75rem;"></i> Payments & Logistics</h3>
+      <div class="accordion-item">
+        <button class="accordion-header">When do I get paid after an event? <i class="fas fa-chevron-down"></i></button>
+        <div class="accordion-content"><p>We process payouts within <strong>3-5 business days</strong> after the event concludes. Funds are transferred directly to your linked bank account or preferred payment method. You can track all transactions in your vendor dashboard.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">Do you provide shipping and storage assistance? <i class="fas fa-chevron-down"></i></button>
+        <div class="accordion-content"><p>Yes! Our Logistics Concierge team offers:</p><ul><li>Shipping coordination to and from event venues</li><li>Discounted rates with our carrier partners</li><li>On-site storage for multi-day events</li><li>Return shipping labels for unsold inventory (available for Signature vendors)</li></ul></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">What if I need to cancel my participation? <i class="fas fa-chevron-down"></i></button>
+        <div class="accordion-content"><p>Cancellation policies vary by event. Generally:</p><ul><li>30+ days before event: Full refund minus 10% processing fee</li><li>14-29 days before event: 50% refund</li><li>Less than 14 days: No refund, but credit toward a future event may be offered</li></ul><p>Please review your event contract for specific terms.</p></div>
+      </div>
+    </div>
+
+    <!-- Category 4: Support & Resources -->
+    <div class="faq-category">
+      <h3 class="faq-category-title"><i class="fas fa-headset gold-text" style="margin-right: 0.75rem;"></i> Support & Resources</h3>
+      <div class="accordion-item">
+        <button class="accordion-header">What kind of support do vendors receive? <i class="fas fa-chevron-down"></i></button>
+        <div class="accordion-content"><p>Every vendor gets a dedicated <strong>Vendor Success Manager</strong>. Support includes: pre-event setup guidance, on-site assistance during events, access to our Vendor Academy (webinars and workshops), and 24/7 chat support via the vendor portal.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">Do you provide marketing support? <i class="fas fa-chevron-down"></i></button>
+        <div class="accordion-content"><p>Absolutely! All vendors are featured in event marketing campaigns (social media, email newsletters, press releases). Premium and Signature vendors receive additional promotion including Instagram stories, dedicated email features, and inclusion in our seasonal lookbooks reaching 250K+ followers.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">Can I see my sales data after an event? <i class="fas fa-chevron-down"></i></button>
+        <div class="accordion-content"><p>Yes! Your vendor dashboard provides <strong>real-time analytics</strong> including: total sales, units sold, average transaction value, customer demographics (where available), and heatmaps of foot traffic. You can export reports for your records.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: Still Have Questions? Contact Box -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <i class="fas fa-envelope-open-text" style="font-size: 3rem; color: var(--gold); margin-bottom: 1rem; display: block;"></i>
+      <h3 class="font-serif" style="font-size: 1.8rem; margin-bottom: 0.75rem;">Still have questions?</h3>
+      <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 1.5rem;">Our vendor support team is available Monday–Friday, 9am–6pm IST.</p>
+      <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn-gold"><i class="fas fa-envelope"></i> Email hello@vendora.com</a>
+        <a href="#" class="btn-outline-gold"><i class="fas fa-comment"></i> Live Chat</a>
+      </div>
+      <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-phone-alt gold-text"></i> Or call us: +91 98765 43210</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: CTA to Apply -->
+<section>
+  <div class="container">
+    <div class="cta-banner">
+      <h3 class="font-serif" style="font-size: 2rem;">Ready to Join Vendora?</h3>
+      <p style="margin: 1rem 0; color: var(--text-secondary);">Apply today and become part of India's premier pop-up market platform.</p>
+      <a href="#" class="btn-gold">Apply as Vendor <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><a href="index.html" class="footer-logo"><span>Vendora</span></a><p style="margin-top: 0.5rem;">Crafting luxury pop-up experiences. Curated markets, elevated commerce.</p><div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
+      <div class="footer-col"><h4>Discover</h4><a href="index.html#markets">Markets</a><a href="vendor.html">Vendors</a><a href="about.html">Our Story</a><a href="#">Press</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="faq.html">Vendor FAQ</a><a href="#">Event Inquiries</a><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      <div class="footer-col"><h4>Visit Studio</h4><p><i class="fas fa-map-marker-alt gold-text"></i> Suite 45, Creators Block, Mumbai, India</p><p><i class="fas fa-envelope gold-text"></i> hello@vendora.com</p><p><i class="fas fa-phone gold-text"></i> +91 98765 43210</p></div>
+    </div>
+    <div class="footer-copyright"><p>© 2026 Vendora. All rights reserved.</p><div><a href="#">Privacy Policy</a> <a href="#">Terms of Service</a></div></div>
+  </div>
+</footer>
+
+<script>
+  // Theme Toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+  const body = document.body;
+  
+  function updateThemeIcon(isDark) {
+    if(themeToggle) themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    if(mobileThemeToggle) mobileThemeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> Theme' : '<i class="fas fa-moon"></i> Theme';
+  }
+  
+  function toggleTheme() {
+    body.classList.toggle('dark');
+    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+    updateThemeIcon(body.classList.contains('dark'));
+  }
+  
+  if(localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+    updateThemeIcon(true);
+  } else if(window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('theme')) {
+    body.classList.add('dark');
+    updateThemeIcon(true);
+  }
+  
+  themeToggle?.addEventListener('click', toggleTheme);
+  mobileThemeToggle?.addEventListener('click', toggleTheme);
+  
+  // RTL Toggle
+  const rtlToggle = document.getElementById('rtl-toggle');
+  const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+  const htmlEl = document.documentElement;
+  
+  function toggleRTL() {
+    if(htmlEl.getAttribute('dir') === 'rtl') {
+      htmlEl.removeAttribute('dir');
+      localStorage.setItem('direction', 'ltr');
+    } else {
+      htmlEl.setAttribute('dir', 'rtl');
+      localStorage.setItem('direction', 'rtl');
+    }
+  }
+  
+  rtlToggle?.addEventListener('click', toggleRTL);
+  mobileRtlToggle?.addEventListener('click', toggleRTL);
+  
+  if(localStorage.getItem('direction') === 'rtl') htmlEl.setAttribute('dir', 'rtl');
+  
+  // Mobile Menu Toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobilePanel = document.getElementById('mobile-menu-panel');
+  
+  function toggleMobileMenu() {
+    mobilePanel.classList.toggle('show');
+    mobileMenuBtn.classList.toggle('active');
+    document.body.style.overflow = mobilePanel.classList.contains('show') ? 'hidden' : '';
+  }
+  
+  mobileMenuBtn?.addEventListener('click', toggleMobileMenu);
+  
+  document.querySelectorAll('.mobile-nav-link, .mobile-login-btn').forEach(link => {
+    link.addEventListener('click', () => {
+      if(mobilePanel.classList.contains('show')) toggleMobileMenu();
+    });
+  });
+  
+  // Mobile Dropdown Toggle
+  const homeDropdownBtn = document.getElementById('mobileHomeDropdownBtn');
+  const homeSubmenu = document.getElementById('mobileHomeSubmenu');
+  const homeIcon = document.getElementById('mobileHomeIcon');
+  const portalDropdownBtn = document.getElementById('mobilePortalDropdownBtn');
+  const portalSubmenu = document.getElementById('mobilePortalSubmenu');
+  const portalIcon = document.getElementById('mobilePortalIcon');
+  
+  function toggleMobileDropdown(btn, submenu, icon) {
+    if(btn && submenu) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        submenu.classList.toggle('show');
+        if(icon) icon.classList.toggle('rotated');
+      });
+    }
+  }
+  
+  toggleMobileDropdown(homeDropdownBtn, homeSubmenu, homeIcon);
+  toggleMobileDropdown(portalDropdownBtn, portalSubmenu, portalIcon);
+  
+  window.addEventListener('resize', () => {
+    if(window.innerWidth > 1180 && mobilePanel?.classList.contains('show')) toggleMobileMenu();
+  });
+  
+  // FAQ Accordion Functionality
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const content = header.nextElementSibling;
+      const isActive = header.classList.contains('active');
+      
+      // Close all other accordions (optional - for single open at a time)
+      accordionHeaders.forEach(otherHeader => {
+        if (otherHeader !== header && otherHeader.classList.contains('active')) {
+          otherHeader.classList.remove('active');
+          otherHeader.nextElementSibling.classList.remove('show');
+        }
+      });
+      
+      // Toggle current accordion
+      header.classList.toggle('active');
+      content.classList.toggle('show');
+    });
+  });
+  
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if(targetId === "#" || targetId === "") return;
+      const target = document.querySelector(targetId);
+      if(target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if(mobilePanel?.classList.contains('show')) toggleMobileMenu();
+      }
+    });
+  });
+</script>
+</body>
+</html>

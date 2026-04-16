@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Service Details | Vendora — Premium Pop-Up Market & Event Vendor Platform</title>
+  <meta name="description" content="Detailed information about Vendora's premium services for vendors. Learn about event curation, marketing, logistics, analytics and more.">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Light mode (default) */
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8F8F4;
+      --bg-card: #FFFFFF;
+      --bg-nav: #0D0D0D;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #6b6b6b;
+      --border-color: #e5e5e5;
+      --gold: #C19A6B;
+      --gold-light: #d4af7a;
+      --gold-dark: #a07e50;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --nav-text: #FFFFFF;
+      --footer-text: #FFFFFF;
+      --footer-text-muted: #aaaaaa;
+      --footer-bg: #0D0D0D;
+      --active-bg: rgba(193,154,107,0.2);
+    }
+
+    /* Dark mode */
+    body.dark {
+      --bg-primary: #0D0D0D;
+      --bg-secondary: #0a0a0a;
+      --bg-card: #141414;
+      --bg-nav: #0D0D0D;
+      --text-primary: #FFFFFF;
+      --text-secondary: #cccccc;
+      --text-muted: #999999;
+      --border-color: #2a2a2a;
+      --gold: #C19A6B;
+      --gold-light: #d4af7a;
+      --shadow: 0 10px 30px rgba(0,0,0,0.5);
+      --nav-text: #FFFFFF;
+      --footer-text: #FFFFFF;
+      --footer-text-muted: #aaaaaa;
+      --footer-bg: #0D0D0D;
+      --active-bg: rgba(193,154,107,0.25);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      scroll-behavior: smooth;
+      line-height: 1.5;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .font-serif {
+      font-family: 'Merriweather', serif;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fadeInUp 0.6s ease-out; }
+
+    .gold-text { color: var(--gold); }
+    .gold-divider {
+      width: 70px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.8rem 0 2rem 0;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #0D0D0D;
+      font-weight: 600;
+      padding: 0.85rem 2rem;
+      border-radius: 0;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-gold:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+    .btn-outline-gold {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.75rem 1.8rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-outline-gold:hover {
+      background: var(--gold);
+      color: #0D0D0D;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background: var(--bg-nav);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .flex-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+    .nav-logo-text {
+      font-size: 1.8rem !important;
+      font-weight: 700 !important;
+      color: var(--nav-text);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .nav-logo-text span {
+      color: var(--gold);
+      font-style: italic;
+      font-family: 'Merriweather', serif;
+    }
+    .nav-menu-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      margin: 0 2rem;
+    }
+    .nav-links-group {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      color: var(--nav-text);
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .nav-link:hover { color: var(--gold); background: rgba(193,154,107,0.15); }
+    .nav-link.active {
+      color: var(--gold);
+      background: var(--active-bg);
+      border-bottom: 2px solid var(--gold);
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+    .dropdown-container {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-btn {
+      background: none;
+      border: none;
+      color: var(--nav-text);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .dropdown-btn:hover { color: var(--gold); background: rgba(193,154,107,0.15); }
+    .dropdown-menu {
+      position: absolute;
+      left: 0;
+      margin-top: 0.5rem;
+      width: 200px;
+      background: var(--bg-card);
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      transform: translateY(10px);
+      z-index: 60;
+      border: 1px solid var(--border-color);
+    }
+    .dropdown-container:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 0.75rem 1.2rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    .dropdown-menu a:hover { background: rgba(193,154,107,0.1); color: var(--gold); }
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: rgba(193,154,107,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--nav-text);
+      border: none;
+      transition: 0.2s;
+    }
+    .icon-btn:hover { background: var(--gold); color: #0D0D0D; }
+    .login-btn {
+      background: var(--gold);
+      color: #0D0D0D;
+      padding: 0.5rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: 0.3s;
+    }
+    .login-btn:hover { background: var(--gold-light); transform: scale(1.02); }
+    
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+    .hamburger-icon, .close-icon { font-size: 1.8rem; color: var(--nav-text); }
+    .close-icon { display: none; }
+    .mobile-menu-btn.active .hamburger-icon { display: none; }
+    .mobile-menu-btn.active .close-icon { display: block; }
+    .mobile-menu-panel {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      background: var(--bg-nav);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      z-index: 999;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+    }
+    .mobile-menu-panel.show { max-height: calc(100vh - 80px); overflow-y: auto; }
+    .mobile-menu-inner { padding: 0.5rem 0; }
+    .mobile-nav-item { border-bottom: 1px solid rgba(193,154,107,0.1); }
+    .mobile-nav-link {
+      color: var(--nav-text);
+      text-decoration: none;
+      display: block;
+      padding: 1rem 1.5rem;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .mobile-nav-link:hover { color: var(--gold); background: rgba(193,154,107,0.1); }
+    .mobile-nav-link.active {
+      color: var(--gold);
+      background: rgba(193,154,107,0.2);
+      border-left: 3px solid var(--gold);
+    }
+    .mobile-dropdown-item {
+      border-bottom: 1px solid rgba(193,154,107,0.1);
+    }
+    .mobile-dropdown-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--nav-text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .mobile-dropdown-btn:hover { color: var(--gold); background: rgba(193,154,107,0.1); }
+    .mobile-dropdown-icon {
+      transition: transform 0.3s ease;
+    }
+    .mobile-dropdown-icon.rotated {
+      transform: rotate(180deg);
+    }
+    .mobile-submenu {
+      padding-left: 1.5rem;
+      background: rgba(0,0,0,0.2);
+      display: none;
+      overflow: hidden;
+    }
+    .mobile-submenu.show {
+      display: block;
+    }
+    .mobile-submenu a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--nav-text);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: 0.2s;
+      border-left: 2px solid transparent;
+    }
+    .mobile-submenu a:hover {
+      color: var(--gold);
+      opacity: 1;
+      border-left-color: var(--gold);
+      background: rgba(193,154,107,0.05);
+    }
+    .mobile-login-btn {
+      display: inline-block;
+      margin: 1rem 1.5rem;
+      background: var(--gold);
+      color: #0D0D0D;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      text-align: center;
+    }
+    .mobile-theme-rtl {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid rgba(193,154,107,0.15);
+      flex-wrap: wrap;
+    }
+    .mobile-icon-btn {
+      background: rgba(193,154,107,0.2);
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      color: var(--nav-text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mobile-icon-btn:hover { background: var(--gold); color: #0D0D0D; }
+    
+    @media (max-width: 1180px) {
+      .nav-menu-container, .nav-buttons { display: none; }
+      .mobile-menu-btn { display: block; }
+    }
+
+    /* container & sections */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 100px 0; border-bottom: 1px solid var(--border-color); }
+    .section-title {
+      font-size: 2.8rem;
+      font-family: 'Merriweather', serif;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 2rem;
+      transition: all 0.3s;
+      border-radius: 12px;
+    }
+    .card:hover { border-color: var(--gold); transform: translateY(-6px); }
+    .card-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem; }
+    .feature-list { list-style: none; margin: 1.5rem 0; }
+    .feature-list li { margin-bottom: 0.75rem; display: flex; align-items: center; gap: 12px; }
+    .feature-list i { color: var(--gold); width: 24px; }
+    .full-width-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .back-link:hover { gap: 12px; }
+    .cta-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--gold);
+      text-align: center;
+      padding: 3rem;
+      border-radius: 16px;
+    }
+    .pricing-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #0D0D0D;
+      padding: 0.5rem 1.5rem;
+      font-weight: 600;
+      margin: 1rem 0;
+    }
+    
+    /* footer */
+    footer {
+      background: var(--footer-bg);
+      padding-top: 80px;
+      padding-bottom: 40px;
+      border-top: 1px solid rgba(193,154,107,0.2);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .footer-logo {
+      font-size: 1.8rem !important;
+      font-weight: 700 !important;
+      color: var(--footer-text);
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--gold); font-style: italic; font-family: 'Merriweather', serif; }
+    .footer-col h4 { font-size: 1.2rem; margin-bottom: 1.2rem; color: var(--footer-text); }
+    .footer-col a, .footer-col p { color: var(--footer-text-muted); text-decoration: none; display: block; margin-bottom: 0.6rem; font-size: 0.85rem; }
+    .footer-col a:hover { color: var(--gold); }
+    .social-icons a { display: inline-block; margin-right: 1rem; font-size: 1.2rem; color: var(--footer-text-muted); }
+    .social-icons a:hover { color: var(--gold); }
+    .footer-copyright {
+      border-top: 1px solid rgba(193,154,107,0.15);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: var(--footer-text-muted);
+      font-size: 0.8rem;
+    }
+    @media (max-width: 1024px) {
+      .section-title { font-size: 2.2rem; }
+      .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .section-title { font-size: 1.8rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      section { padding: 60px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="flex-nav">
+      <div><a href="index.html" class="nav-logo-text"><span>Vendora</span></a></div>
+      <div class="nav-menu-container">
+        <div class="nav-links-group">
+          <div class="dropdown-container">
+            <button class="dropdown-btn">Home <i class="fas fa-chevron-down"></i></button>
+            <div class="dropdown-menu"><a href="index.html">Home 1</a><a href="home2.html">Home 2</a></div>
+          </div>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="vendor.html" class="nav-link">Vendors</a>
+          <a href="process.html" class="nav-link">Process</a>
+          <a href="service.html" class="nav-link">Service</a>
+          <a href="faq.html" class="nav-link">FAQ</a>
+          <div class="dropdown-container">
+            <button class="dropdown-btn">Portal <i class="fas fa-chevron-down"></i></button>
+            <div class="dropdown-menu"><a href="admin.html">Admin Dashboard</a><a href="user.html">Vendor Dashboard</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-buttons">
+        <a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="register.html" class="login-btn"><i class="fas fa-user-plus"></i> Register</a>
+        <button id="rtl-toggle" class="icon-btn" title="RTL"><i class="fas fa-exchange-alt"></i></button>
+        <button id="theme-toggle" class="icon-btn" title="Theme"><i class="fas fa-moon"></i></button>
+      </div>
+      <button id="mobile-menu-btn" class="mobile-menu-btn">
+        <i class="fas fa-bars hamburger-icon"></i>
+        <i class="fas fa-times close-icon"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu Panel -->
+  <div id="mobile-menu-panel" class="mobile-menu-panel">
+    <div class="mobile-menu-inner">
+      <div class="mobile-dropdown-item">
+        <button class="mobile-dropdown-btn" id="mobileHomeDropdownBtn">
+          Home <i class="fas fa-chevron-down mobile-dropdown-icon" id="mobileHomeIcon"></i>
+        </button>
+        <div class="mobile-submenu" id="mobileHomeSubmenu">
+          <a href="index.html">Home 1</a>
+          <a href="#">Home 2</a>
+        </div>
+      </div>
+      <div class="mobile-nav-item"><a href="about.html" class="mobile-nav-link">About</a></div>
+      <div class="mobile-nav-item"><a href="vendor.html" class="mobile-nav-link">Vendors</a></div>
+      <div class="mobile-nav-item"><a href="process.html" class="mobile-nav-link">Process</a></div>
+      <div class="mobile-nav-item"><a href="service.html" class="mobile-nav-link">Service</a></div>
+      <div class="mobile-nav-item"><a href="faq.html" class="mobile-nav-link">FAQ</a></div>
+      <div class="mobile-dropdown-item">
+        <button class="mobile-dropdown-btn" id="mobilePortalDropdownBtn">
+          Portal <i class="fas fa-chevron-down mobile-dropdown-icon" id="mobilePortalIcon"></i>
+        </button>
+        <div class="mobile-submenu" id="mobilePortalSubmenu">
+          <a href="admin.html">Admin Dashboard</a>
+          <a href="user.html">Vendor Dashboard</a>
+        </div>
+      </div>
+      <div class="mobile-nav-item">
+        <a href="login.html" class="mobile-login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="register.html" class="mobile-login-btn"><i class="fas fa-user-plus"></i>Register</a>
+      </div>
+      <div class="mobile-theme-rtl">
+        <button id="mobile-theme-toggle" class="mobile-icon-btn"><i class="fas fa-moon"></i> Theme</button>
+        <button id="mobile-rtl-toggle" class="mobile-icon-btn"><i class="fas fa-exchange-alt"></i> RTL</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- DYNAMIC SERVICE DETAILS SECTION -->
+<section style="padding-top: 120px;">
+  <div class="container">
+    <a href="service.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to All Services</a>
+    
+    <!-- Dynamic Content will be injected here -->
+    <div id="service-dynamic-content" class="animate-fade-in">
+      <!-- Content loaded dynamically via JavaScript -->
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section id="inquiry" style="background: var(--bg-secondary);">
+  <div class="container">
+    <div class="cta-banner">
+      <i class="fas fa-headset" style="font-size: 3rem; color: var(--gold); margin-bottom: 1rem; display: block;"></i>
+      <h3 class="font-serif" style="font-size: 1.8rem;">Ready to Get Started?</h3>
+      <p style="margin: 1rem 0; color: var(--text-secondary);">Speak with our vendor success team to learn how this service can elevate your brand.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn-gold">Book Consultation <i class="fas fa-calendar-alt"></i></a>
+        <a href="#" class="btn-outline-gold">Contact Sales <i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><a href="index.html" class="footer-logo"><span>Vendora</span></a><p style="margin-top: 0.5rem;">Crafting luxury pop-up experiences. Curated markets, elevated commerce.</p><div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
+      <div class="footer-col"><h4>Discover</h4><a href="#">Markets</a><a href="vendor.html">Vendors</a><a href="about.html">Our Story</a><a href="#">Press</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="faq.html">Vendor FAQ</a><a href="#">Event Inquiries</a><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      <div class="footer-col"><h4>Visit Studio</h4><p><i class="fas fa-map-marker-alt gold-text"></i> Suite 45, Creators Block, Mumbai, India</p><p><i class="fas fa-envelope gold-text"></i> hello@vendora.com</p><p><i class="fas fa-phone gold-text"></i> +91 98765 43210</p></div>
+    </div>
+    <div class="footer-copyright"><p>© 2026 Vendora. All rights reserved.</p><div><a href="#">Privacy Policy</a> <a href="#">Terms of Service</a></div></div>
+  </div>
+</footer>
+
+<script>
+  // Theme Toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+  const body = document.body;
+  
+  function updateThemeIcon(isDark) {
+    if(themeToggle) themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    if(mobileThemeToggle) mobileThemeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> Theme' : '<i class="fas fa-moon"></i> Theme';
+  }
+  
+  function toggleTheme() {
+    body.classList.toggle('dark');
+    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+    updateThemeIcon(body.classList.contains('dark'));
+  }
+  
+  if(localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+    updateThemeIcon(true);
+  } else if(window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('theme')) {
+    body.classList.add('dark');
+    updateThemeIcon(true);
+  }
+  
+  themeToggle?.addEventListener('click', toggleTheme);
+  mobileThemeToggle?.addEventListener('click', toggleTheme);
+  
+  // RTL Toggle
+  const rtlToggle = document.getElementById('rtl-toggle');
+  const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+  const htmlEl = document.documentElement;
+  
+  function toggleRTL() {
+    if(htmlEl.getAttribute('dir') === 'rtl') {
+      htmlEl.removeAttribute('dir');
+      localStorage.setItem('direction', 'ltr');
+    } else {
+      htmlEl.setAttribute('dir', 'rtl');
+      localStorage.setItem('direction', 'rtl');
+    }
+  }
+  
+  rtlToggle?.addEventListener('click', toggleRTL);
+  mobileRtlToggle?.addEventListener('click', toggleRTL);
+  
+  if(localStorage.getItem('direction') === 'rtl') htmlEl.setAttribute('dir', 'rtl');
+  
+  // Mobile Menu Toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobilePanel = document.getElementById('mobile-menu-panel');
+  
+  function toggleMobileMenu() {
+    mobilePanel.classList.toggle('show');
+    mobileMenuBtn.classList.toggle('active');
+    document.body.style.overflow = mobilePanel.classList.contains('show') ? 'hidden' : '';
+  }
+  
+  mobileMenuBtn?.addEventListener('click', toggleMobileMenu);
+  
+  document.querySelectorAll('.mobile-nav-link, .mobile-login-btn').forEach(link => {
+    link.addEventListener('click', () => {
+      if(mobilePanel.classList.contains('show')) toggleMobileMenu();
+    });
+  });
+  
+  // Mobile Dropdown Toggle
+  const homeDropdownBtn = document.getElementById('mobileHomeDropdownBtn');
+  const homeSubmenu = document.getElementById('mobileHomeSubmenu');
+  const homeIcon = document.getElementById('mobileHomeIcon');
+  const portalDropdownBtn = document.getElementById('mobilePortalDropdownBtn');
+  const portalSubmenu = document.getElementById('mobilePortalSubmenu');
+  const portalIcon = document.getElementById('mobilePortalIcon');
+  
+  function toggleMobileDropdown(btn, submenu, icon) {
+    if(btn && submenu) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        submenu.classList.toggle('show');
+        if(icon) icon.classList.toggle('rotated');
+      });
+    }
+  }
+  
+  toggleMobileDropdown(homeDropdownBtn, homeSubmenu, homeIcon);
+  toggleMobileDropdown(portalDropdownBtn, portalSubmenu, portalIcon);
+  
+  window.addEventListener('resize', () => {
+    if(window.innerWidth > 1180 && mobilePanel?.classList.contains('show')) toggleMobileMenu();
+  });
+  
+  // ===== DYNAMIC SERVICE DETAILS =====
+  // Service data mapping
+  const serviceData = {
+    'event-curation': {
+      title: 'Luxury Event Curation',
+      icon: 'fa-gem',
+      mainImage: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format',
+      description: 'Our luxury event curation service connects your brand with India\'s most exclusive pop-up markets, rooftop soirées, and cultural festivals. Each event is meticulously curated to attract high-net-worth individuals and discerning shoppers.',
+      longDescription: 'With over 5 years of experience organizing premium pop-up experiences, Vendora has built a reputation for excellence. Our curation team hand-selects venues, manages vendor mix, and ensures every event maintains a luxurious atmosphere. From intimate gatherings of 50 vendors to large-scale festivals with 200+ booths, we handle every detail.',
+      features: [
+        'Premium venue selection across top Indian cities',
+        'High-net-worth audience targeting',
+        'Themed market experiences (Golden Edition, Artisan Quarter, Noire Evenings)',
+        'Professional booth placement optimization',
+        'Pre-event vendor briefing and setup assistance'
+      ],
+      pricing: 'Starting at $250 per event | Custom packages available',
+      includes: 'Booth space, basic electricity, Wi-Fi, event security, marketing inclusion, on-site support',
+      ctaText: 'Apply for Next Event'
+    },
+    'marketing': {
+      title: 'Marketing & PR Campaigns',
+      icon: 'fa-bullhorn',
+      mainImage: 'https://images.unsplash.com/photo-1432888622747-4eb9a8f2c293?q=80&w=2074&auto=format',
+      description: 'Amplify your brand reach with our integrated marketing suite. We leverage our 250K+ social media following, email newsletters, and media partnerships to drive foot traffic and sales.',
+      longDescription: 'Our marketing team creates customized campaigns for each vendor and event. From Instagram takeovers to influencer collaborations, we ensure your brand gets maximum visibility before, during, and after the event. Premium vendors receive dedicated social media features and inclusion in our seasonal lookbooks distributed to 50K+ subscribers.',
+      features: [
+        'Social media promotion (250K+ followers across platforms)',
+        'Professional lookbook and editorial features',
+        'Email marketing to 50K+ subscribers',
+        'Influencer and media partnerships',
+        'Custom content creation (photos, videos, reels)'
+      ],
+      pricing: 'Included with booth fee | Premium packages: $150+',
+      includes: 'Event listing, social media mentions, email feature, post-event coverage',
+      ctaText: 'Upgrade Your Marketing'
+    },
+    'logistics': {
+      title: 'Logistics Concierge',
+      icon: 'fa-truck-fast',
+      mainImage: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=2071&auto=format',
+      description: 'End-to-end logistics management including shipping, storage, and on-site setup. Focus on selling while we handle the heavy lifting.',
+      longDescription: 'Our Logistics Concierge team takes the stress out of event participation. We coordinate door-to-door shipping, provide secure storage solutions for multi-day events, and offer professional setup assistance. Whether you\'re shipping a few boxes or an entire booth display, we ensure everything arrives on time and in perfect condition.',
+      features: [
+        'Door-to-door shipping coordination',
+        'Discounted rates with carrier partners',
+        'Secure on-site storage for multi-day events',
+        'Professional booth setup and breakdown assistance',
+        'Return shipping labels for unsold inventory (Signature vendors)'
+      ],
+      pricing: 'Starting at $75 per shipment | Custom quotes available',
+      includes: 'Shipping coordination, storage access, setup assistance, tracking dashboard',
+      ctaText: 'Get Logistics Quote'
+    },
+    'analytics': {
+      title: 'Analytics & Insights',
+      icon: 'fa-chart-line',
+      mainImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format',
+      description: 'Data-driven decision making with real-time sales dashboards, customer demographics, and heatmap analytics post-event.',
+      longDescription: 'Our proprietary analytics platform gives you unprecedented insight into your pop-up performance. Track sales in real-time, understand customer demographics, and see exactly where foot traffic is highest. Export detailed reports to refine your product mix, pricing strategy, and future event selection.',
+      features: [
+        'Real-time sales tracking dashboard',
+        'Customer demographic insights (age, location, spending habits)',
+        'Foot traffic heatmaps of event layout',
+        'Product performance analytics',
+        'Exportable reports for business planning'
+      ],
+      pricing: 'Included with Premium and Signature booths | Boutique: $50 add-on',
+      includes: 'Live dashboard, post-event report, heatmap visualization',
+      ctaText: 'Enable Analytics'
+    },
+    'academy': {
+      title: 'Vendor Academy',
+      icon: 'fa-chalkboard-user',
+      mainImage: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format',
+      description: 'Educational workshops, webinars, and masterclasses from industry experts to sharpen your selling, branding, and merchandising skills.',
+      longDescription: 'Vendora Academy is your gateway to continuous learning. Join monthly webinars led by successful vendors, marketing experts, and visual merchandising professionals. Topics include pricing strategy, booth design, customer engagement, and scaling your pop-up business. All sessions are recorded and available on-demand.',
+      features: [
+        'Monthly live webinars with industry experts',
+        'Visual merchandising and booth design training',
+        'Pricing strategy and inventory management workshops',
+        'Access to recorded sessions library',
+        'Peer networking and mentorship opportunities'
+      ],
+      pricing: 'Free for all active vendors | Premium masterclasses: $49',
+      includes: 'Live sessions, recordings, resource library, certificate of completion',
+      ctaText: 'View Academy Schedule'
+    },
+    'support': {
+      title: 'White-Glove Support',
+      icon: 'fa-headset',
+      mainImage: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=2070&auto=format',
+      description: 'Dedicated vendor success manager available 24/7 for pre-event, during-event, and post-event assistance. Priority support for all queries.',
+      longDescription: 'Every Vendora vendor is assigned a personal success manager who knows your brand and goals. From onboarding to post-event follow-up, your success manager is your single point of contact for questions, concerns, and opportunities. Priority support means faster response times and dedicated attention when you need it most.',
+      features: [
+        'Personal dedicated vendor success manager',
+        '24/7 priority support via chat, email, and phone',
+        'Custom onboarding and training plan',
+        'Pre-event checklists and timeline management',
+        'Post-event debrief and growth planning'
+      ],
+      pricing: 'Included for Premium and Signature vendors | Boutique: $100 add-on',
+      includes: 'Dedicated manager, priority support, custom onboarding, quarterly reviews',
+      ctaText: 'Upgrade to Premium Support'
+    }
+  };
+
+  // Default/fallback service data
+  const defaultService = {
+    title: 'Premium Service',
+    icon: 'fa-star',
+    mainImage: 'https://images.unsplash.com/photo-1556741533-6e6a4bd8b49c?q=80&w=2070&auto=format',
+    description: 'Discover our premium services designed to elevate your pop-up market experience.',
+    longDescription: 'Vendora offers a comprehensive suite of services for luxury vendors. From event curation to analytics, we provide everything you need to succeed.',
+    features: ['Premium vendor support', 'Event access', 'Marketing inclusion', 'Analytics dashboard'],
+    pricing: 'Contact us for pricing',
+    includes: 'Full service package',
+    ctaText: 'Contact Sales'
+  };
+
+  // Get service parameter from URL
+  function getServiceParam() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('service');
+  }
+
+  // Render service details dynamically
+  function renderServiceDetails() {
+    const serviceKey = getServiceParam();
+    const service = serviceData[serviceKey] || defaultService;
+    const container = document.getElementById('service-dynamic-content');
+    
+    if (!container) return;
+    
+    // Map service key to proper link for CTA
+    let ctaLink = '#';
+    if (serviceKey === 'event-curation') ctaLink = 'vendor.html#apply';
+    else if (serviceKey === 'marketing') ctaLink = 'service.html#consultation';
+    else if (serviceKey === 'logistics') ctaLink = 'service.html#consultation';
+    else if (serviceKey === 'analytics') ctaLink = 'vendor.html#pricing';
+    else if (serviceKey === 'academy') ctaLink = 'service.html#consultation';
+    else if (serviceKey === 'support') ctaLink = 'service.html#consultation';
+    
+    const html = `
+      <div class="grid-2">
+        <div>
+          <div class="pricing-badge">Premium Service</div>
+          <h1 class="section-title">${service.title}</h1>
+          <div class="gold-divider"></div>
+          <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1rem;">${service.description}</p>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">${service.longDescription}</p>
+          
+          <h3 style="margin: 1.5rem 0 1rem 0;">What's Included:</h3>
+          <ul class="feature-list">
+            ${service.features.map(feature => `<li><i class="fas fa-check-circle"></i> ${feature}</li>`).join('')}
+          </ul>
+          
+          <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+            <p><strong><i class="fas fa-tag gold-text"></i> Pricing:</strong> ${service.pricing}</p>
+            <p style="margin-top: 0.5rem;"><strong><i class="fas fa-gift gold-text"></i> Includes:</strong> ${service.includes}</p>
+          </div>
+          
+          <a href="${ctaLink}" class="btn-gold">${service.ctaText} <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div>
+          <img class="full-width-img" src="${service.mainImage}" alt="${service.title}" style="border-radius: 16px;">
+          <div class="img-caption" style="margin-top: 1rem;">Vendora ${service.title} service in action</div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 4rem;">
+        <h2 class="section-title" style="font-size: 2rem; text-align: center;">Why Choose This <span class="gold-text">Service?</span></h2>
+        <div class="gold-divider" style="margin: 0.8rem auto 2rem;"></div>
+        <div class="grid-3">
+          <div class="card"><div class="card-icon"><i class="fas fa-trophy"></i></div><h3>Proven Results</h3><p>Vendors using this service report 210% average increase in sales and customer engagement.</p></div>
+          <div class="card"><div class="card-icon"><i class="fas fa-clock"></i></div><h3>Time-Saving</h3><p>Let our experts handle the details while you focus on what matters most — your products and customers.</p></div>
+          <div class="card"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Risk-Free</h3><p>All services come with our satisfaction guarantee. Not happy? We'll work to make it right.</p></div>
+        </div>
+      </div>
+    `;
+    
+    container.innerHTML = html;
+  }
+  
+  // Initialize dynamic content on page load
+  renderServiceDetails();
+  
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if(targetId === "#" || targetId === "") return;
+      const target = document.querySelector(targetId);
+      if(target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
