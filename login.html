@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
   <title>Login | Vendora — Premium Pop-Up Market & Event Vendor Platform</title>
-   <link rel="icon" type="image/jpeg" href="images/fav.webp">
+  <link rel="icon" type="image/jpeg" href="images/fav.webp">
   <meta name="description" content="Login to your Vendora vendor account. Access your dashboard, manage events, track sales, and grow your brand.">
   
   <!-- Font Awesome -->
@@ -32,30 +32,35 @@
       --gold: #C19A6B;
       --gold-light: #d4af7a;
       --gold-dark: #a07e50;
-      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --shadow: 0 20px 35px -8px rgba(0,0,0,0.1), 0 5px 12px -4px rgba(0,0,0,0.05);
       --input-bg: #FFFFFF;
       --input-border: #e0e0e0;
+      --card-border-light: rgba(0,0,0,0.05);
+      --demo-bg: rgba(193, 154, 107, 0.08);
     }
 
-    /* Dark mode */
+    /* Dark mode — fixed deep black background & improved visibility */
     body.dark {
-      --bg-primary: #0D0D0D;
+      --bg-primary: #000000;
       --bg-secondary: #0a0a0a;
-      --bg-card: #141414;
-      --text-primary: #FFFFFF;
-      --text-secondary: #cccccc;
-      --text-muted: #999999;
+      --bg-card: #0c0c0c;
+      --text-primary: #F5F5F5;
+      --text-secondary: #CCCCCC;
+      --text-muted: #A0A0A0;
       --border-color: #2a2a2a;
-      --gold: #C19A6B;
-      --gold-light: #d4af7a;
-      --shadow: 0 10px 30px rgba(0,0,0,0.5);
-      --input-bg: #1a1a1a;
-      --input-border: #333333;
+      --gold: #D4AF7A;
+      --gold-light: #e2c293;
+      --gold-dark: #b8945c;
+      --shadow: 0 20px 35px -8px rgba(0,0,0,0.6), 0 5px 12px -4px rgba(0,0,0,0.4);
+      --input-bg: #111111;
+      --input-border: #2c2c2c;
+      --card-border-light: rgba(255,255,255,0.05);
+      --demo-bg: rgba(212, 175, 122, 0.1);
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      background: var(--bg-primary);
       color: var(--text-primary);
       height: 100vh;
       width: 100vw;
@@ -63,29 +68,35 @@
       position: fixed;
       top: 0;
       left: 0;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    /* subtle gradient overlay only in light mode to keep dark pure black */
+    body:not(.dark) {
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     }
 
     .gold-text {
       color: var(--gold);
     }
 
-    /* Top Bar - Clean, No Background */
+    /* Top Bar - Clean, tighter on mobile */
     .top-bar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      height: 70px;
+      height: 64px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 2.5rem;
+      padding: 0 1.5rem;
       background: transparent;
       z-index: 100;
     }
 
     .logo {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: var(--text-primary);
       text-decoration: none;
@@ -101,13 +112,13 @@
 
     .controls {
       display: flex;
-      gap: 0.75rem;
+      gap: 0.6rem;
       align-items: center;
     }
 
     .icon-btn {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       background: rgba(193, 154, 107, 0.12);
       display: flex;
@@ -117,7 +128,13 @@
       color: var(--text-primary);
       border: 1px solid rgba(193, 154, 107, 0.25);
       transition: all 0.3s ease;
-      font-size: 1rem;
+      font-size: 0.95rem;
+      backdrop-filter: blur(2px);
+    }
+
+    body.dark .icon-btn {
+      background: rgba(212, 175, 122, 0.12);
+      border-color: rgba(212, 175, 122, 0.28);
     }
 
     .icon-btn:hover {
@@ -127,27 +144,32 @@
       transform: scale(1.05);
     }
 
-    /* Main Login Container - Perfectly Centered */
+    /* Main Login Container - Perfectly Centered, compact on mobile */
     .login-container {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       width: 100%;
-      padding: 0 1.5rem;
+      padding: 0 1rem;
     }
 
-    /* Tightened Login Card */
+    /* Tightened Login Card - mobile-friendly, less padding */
     .login-card {
       background: var(--bg-card);
-      border-radius: 20px;
-      padding: 2rem 2rem 2rem 2rem;
+      border-radius: 28px;
+      padding: 1.6rem 1.4rem 1.8rem 1.4rem;
       width: 100%;
       max-width: 420px;
       box-shadow: var(--shadow);
       border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
       animation: fadeInUp 0.5s ease-out;
+    }
+
+    body.dark .login-card {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #0c0c0c;
     }
 
     @keyframes fadeInUp {
@@ -166,58 +188,73 @@
       transform: translateY(-3px);
     }
 
+    /* HEADER + DIVIDER SPACING FIX: clear gap */
     .login-header {
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.4rem;
     }
 
     .login-header h1 {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       font-family: 'Merriweather', serif;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.3px;
     }
 
     .login-header p {
       color: var(--text-secondary);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
+      margin-top: 0.1rem;
     }
 
     .gold-divider {
-      width: 50px;
-      height: 2px;
+      width: 55px;
+      height: 2.5px;
       background: var(--gold);
-      margin: 0.6rem auto 0;
+      margin: 0.7rem auto 0.2rem auto;
+      border-radius: 2px;
     }
 
-    /* Form Styles - Tightened */
+    /* Form Styles — tight but readable */
     .input-group {
       margin-bottom: 1.2rem;
     }
 
     .input-group label {
       display: block;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.45rem;
       font-weight: 500;
       font-size: 0.8rem;
       color: var(--text-secondary);
+      letter-spacing: 0.2px;
     }
 
     .input-group .label-icon {
       margin-right: 6px;
       color: var(--gold);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
     }
 
     .input-field {
       width: 100%;
-      padding: 0.75rem 1rem;
+      padding: 0.72rem 0.9rem;
       background: var(--input-bg);
       border: 1.5px solid var(--input-border);
-      border-radius: 10px;
-      font-size: 0.9rem;
+      border-radius: 14px;
+      font-size: 0.88rem;
       color: var(--text-primary);
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
       font-family: 'Inter', sans-serif;
+    }
+
+    body.dark .input-field {
+      background: #111111;
+      border-color: #2c2c2c;
+    }
+
+    body.dark .input-field:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 122, 0.2);
     }
 
     .input-field:focus {
@@ -228,17 +265,17 @@
 
     .input-field::placeholder {
       color: var(--text-muted);
-      opacity: 0.5;
-      font-size: 0.85rem;
+      opacity: 0.55;
+      font-size: 0.8rem;
     }
 
-    /* Options Row - Tightened */
+    /* Options Row */
     .options-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
     }
 
     .checkbox {
@@ -260,11 +297,13 @@
       color: var(--gold);
       text-decoration: none;
       transition: 0.2s;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
+      font-weight: 500;
     }
 
     .forgot-link:hover {
       text-decoration: underline;
+      color: var(--gold-light);
     }
 
     /* Login Button */
@@ -272,34 +311,39 @@
       width: 100%;
       background: var(--gold);
       color: #0D0D0D;
-      font-weight: 600;
+      font-weight: 700;
       padding: 0.75rem;
-      border-radius: 10px;
+      border-radius: 40px;
       border: none;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       font-family: 'Inter', sans-serif;
+      letter-spacing: 0.3px;
     }
 
     .btn-login:hover {
       background: var(--gold-light);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(193, 154, 107, 0.25);
+      box-shadow: 0 8px 20px rgba(193, 154, 107, 0.3);
     }
 
-    /* Divider - Tightened */
+    body.dark .btn-login:hover {
+      box-shadow: 0 8px 20px rgba(212, 175, 122, 0.35);
+    }
+
+    /* Divider — clear spacing */
     .divider {
       display: flex;
       align-items: center;
       text-align: center;
-      margin: 1.5rem 0;
+      margin: 1.5rem 0 1.2rem 0;
       color: var(--text-muted);
-      font-size: 0.75rem;
+      font-size: 0.7rem;
     }
 
     .divider::before,
@@ -310,10 +354,11 @@
     }
 
     .divider span {
-      padding: 0 1rem;
+      padding: 0 0.9rem;
+      font-weight: 500;
     }
 
-    /* Social Login - Tightened */
+    /* Social Login — compact but neat */
     .social-login {
       display: flex;
       gap: 0.8rem;
@@ -326,59 +371,71 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 0.65rem;
+      padding: 0.62rem 0;
       background: transparent;
       border: 1.5px solid var(--border-color);
-      border-radius: 10px;
+      border-radius: 40px;
       color: var(--text-secondary);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
       text-decoration: none;
+    }
+
+    body.dark .social-btn {
+      background: rgba(20, 20, 20, 0.6);
     }
 
     .social-btn:hover {
       border-color: var(--gold);
       color: var(--gold);
       transform: translateY(-2px);
+      background: rgba(193, 154, 107, 0.05);
+    }
+
+    body.dark .social-btn:hover {
+      background: rgba(212, 175, 122, 0.08);
+      border-color: var(--gold);
     }
 
     .social-btn i {
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
-    /* Register Link - Tightened */
+    /* Register Link */
     .register-link {
       text-align: center;
-      margin-top: 1.5rem;
-      padding-top: 1.2rem;
+      margin-top: 1.4rem;
+      padding-top: 1.1rem;
       border-top: 1px solid var(--border-color);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-secondary);
     }
 
     .register-link a {
       color: var(--gold);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       margin-left: 4px;
+      transition: 0.2s;
     }
 
     .register-link a:hover {
       text-decoration: underline;
     }
 
-    /* Demo Credentials Hint - Tightened */
+    /* Demo Credentials Hint — compact, good spacing */
     .demo-hint {
-      background: rgba(193, 154, 107, 0.08);
-      border-radius: 10px;
-      padding: 0.7rem;
+      background: var(--demo-bg);
+      border-radius: 14px;
+      padding: 0.65rem 0.8rem;
       margin-top: 1.2rem;
       text-align: center;
       font-size: 0.7rem;
       color: var(--text-muted);
       border-left: 3px solid var(--gold);
+      backdrop-filter: blur(2px);
     }
 
     .demo-hint i {
@@ -387,54 +444,192 @@
       font-size: 0.7rem;
     }
 
-    /* No scroll - body fixed */
-    body {
-      overflow: hidden;
+    /* Notification styling */
+    .custom-notification {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      z-index: 2000;
+      min-width: 220px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      backdrop-filter: blur(12px);
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.2px;
+      transition: opacity 0.25s;
     }
 
-    /* Responsive */
-    @media (max-width: 500px) {
+    /* ========== RESPONSIVE: Mobile-first tighten everything ========== */
+    @media (max-width: 550px) {
       .top-bar {
         padding: 0 1.2rem;
         height: 60px;
       }
       .logo {
-        font-size: 1.4rem;
-      }
-      .login-card {
-        padding: 1.5rem;
-        max-width: 380px;
-      }
-      .login-header h1 {
-        font-size: 1.5rem;
-      }
-      .social-btn {
-        font-size: 0.7rem;
-        padding: 0.55rem;
+        font-size: 1.45rem;
       }
       .icon-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 0.9rem;
+        width: 34px;
+        height: 34px;
+        font-size: 0.85rem;
+      }
+      .login-container {
+        padding: 0 0.9rem;
+      }
+      .login-card {
+        padding: 1.3rem 1.1rem 1.5rem 1.1rem;
+        max-width: 100%;
+        border-radius: 24px;
+      }
+      .login-header h1 {
+        font-size: 1.55rem;
+      }
+      .login-header p {
+        font-size: 0.75rem;
+      }
+      .gold-divider {
+        width: 48px;
+        margin: 0.6rem auto 0.15rem auto;
+      }
+      .input-group {
+        margin-bottom: 1rem;
+      }
+      .input-field {
+        padding: 0.65rem 0.85rem;
+        font-size: 0.85rem;
+      }
+      .options-row {
+        margin-bottom: 1.3rem;
+        font-size: 0.74rem;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .btn-login {
+        padding: 0.7rem;
+        font-size: 0.85rem;
+      }
+      .divider {
+        margin: 1.2rem 0 1rem 0;
+      }
+      .social-login {
+        gap: 0.7rem;
+      }
+      .social-btn {
+        padding: 0.55rem 0;
+        font-size: 0.7rem;
+        gap: 5px;
+      }
+      .social-btn i {
+        font-size: 0.85rem;
+      }
+      .register-link {
+        margin-top: 1.2rem;
+        padding-top: 0.9rem;
+        font-size: 0.75rem;
+      }
+      .demo-hint {
+        padding: 0.55rem 0.7rem;
+        margin-top: 1rem;
+        font-size: 0.65rem;
       }
     }
 
-    @media (max-width: 380px) {
+    /* For extra small devices (<= 400px) - even tighter */
+    @media (max-width: 400px) {
+      .login-card {
+        padding: 1.2rem 1rem 1.3rem 1rem;
+      }
+      .login-header {
+        margin-bottom: 1rem;
+      }
+      .login-header h1 {
+        font-size: 1.45rem;
+      }
+      .gold-divider {
+        width: 42px;
+      }
+      .input-field {
+        padding: 0.6rem 0.8rem;
+      }
       .social-login {
         flex-direction: column;
         gap: 0.6rem;
       }
+      .social-btn {
+        justify-content: center;
+        padding: 0.5rem;
+      }
       .options-row {
         flex-direction: column;
-        gap: 8px;
         align-items: flex-start;
+        gap: 8px;
+      }
+      .forgot-link {
+        align-self: flex-start;
+      }
+    }
+
+    /* RTL fine-tuning */
+    [dir="rtl"] .input-group label .label-icon {
+      margin-left: 6px;
+      margin-right: 0;
+    }
+    
+    [dir="rtl"] .checkbox {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+    
+    [dir="rtl"] .checkbox input {
+      margin-left: 8px;
+      margin-right: 0;
+    }
+    
+    [dir="rtl"] .btn-login i,
+    [dir="rtl"] .social-btn i {
+      margin-left: 8px;
+      margin-right: 0;
+    }
+    
+    [dir="rtl"] .demo-hint i {
+      margin-left: 6px;
+      margin-right: 0;
+    }
+    
+    [dir="rtl"] .forgot-link {
+      text-align: left;
+    }
+    
+    [dir="rtl"] .options-row {
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+    
+    [dir="rtl"] .register-link a {
+      margin-left: 0;
+      margin-right: 5px;
+    }
+
+    [dir="rtl"] .gold-divider {
+      margin: 0.7rem auto 0.2rem auto;
+    }
+
+    @media (max-width: 400px) {
+      [dir="rtl"] .options-row {
+        flex-direction: column-reverse;
+        align-items: flex-end;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- Top Bar - Clean, No Background, Just Logo and Controls -->
+<!-- Top Bar - Clean, mobile padding tightened -->
 <div class="top-bar">
   <a href="index.html" class="logo"><span>Vendora</span></a>
   <div class="controls">
@@ -443,7 +638,7 @@
   </div>
 </div>
 
-<!-- Login Container - Perfectly Centered -->
+<!-- Login Container - Perfectly Centered, mobile friendly -->
 <div class="login-container">
   <div class="login-card">
     <div class="login-header">
@@ -476,7 +671,7 @@
     </form>
 
     <div class="divider">
-      <span>or</span>
+      <span>or continue with</span>
     </div>
 
     <div class="social-login">
@@ -500,277 +695,197 @@
 </div>
 
 <script>
-  // Theme Toggle
-  const themeToggle = document.getElementById('theme-toggle');
-  const body = document.body;
-  
-  function updateThemeIcon(isDark) {
-    if(themeToggle) {
-      themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    }
-  }
-  
-  function toggleTheme() {
-    body.classList.toggle('dark');
-    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-    updateThemeIcon(body.classList.contains('dark'));
-  }
-  
-  // Check for saved theme preference
-  if(localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark');
-    updateThemeIcon(true);
-  } else if(window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('theme')) {
-    body.classList.add('dark');
-    updateThemeIcon(true);
-  }
-  
-  themeToggle?.addEventListener('click', toggleTheme);
-  
-  // RTL Toggle
-  const rtlToggle = document.getElementById('rtl-toggle');
-  const htmlEl = document.documentElement;
-  
-  function applyRTLStyles(isRTL) {
-    const elements = document.querySelectorAll('.input-field, .btn-login, .social-btn, .register-link, .demo-hint');
-    elements.forEach(el => {
-      if(isRTL) {
-        el.style.textAlign = 'right';
-      } else {
-        el.style.textAlign = '';
-      }
-    });
+  (function() {
+    // ---------- DARK MODE (deep black, high contrast) ----------
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
     
-    const checkboxes = document.querySelectorAll('.checkbox');
-    checkboxes.forEach(cb => {
-      if(isRTL) {
-        cb.style.direction = 'rtl';
-        cb.style.justifyContent = 'flex-end';
-      } else {
-        cb.style.direction = '';
-        cb.style.justifyContent = '';
-      }
-    });
-    
-    const optionsRow = document.querySelector('.options-row');
-    if(optionsRow) {
-      if(isRTL) {
-        optionsRow.style.flexDirection = 'row-reverse';
-      } else {
-        optionsRow.style.flexDirection = '';
+    function updateThemeIcon(isDark) {
+      if(themeToggle) {
+        themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
       }
     }
     
-    const labelIcons = document.querySelectorAll('.label-icon');
-    labelIcons.forEach(icon => {
-      if(isRTL) {
-        icon.style.marginLeft = '6px';
-        icon.style.marginRight = '0';
+    function setTheme(theme) {
+      if(theme === 'dark') {
+        body.classList.add('dark');
+        updateThemeIcon(true);
+        localStorage.setItem('theme', 'dark');
       } else {
-        icon.style.marginLeft = '';
-        icon.style.marginRight = '';
-      }
-    });
-    
-    const demoIcon = document.querySelector('.demo-hint i');
-    if(demoIcon) {
-      if(isRTL) {
-        demoIcon.style.marginLeft = '5px';
-        demoIcon.style.marginRight = '0';
-      } else {
-        demoIcon.style.marginLeft = '';
-        demoIcon.style.marginRight = '';
+        body.classList.remove('dark');
+        updateThemeIcon(false);
+        localStorage.setItem('theme', 'light');
       }
     }
-  }
-  
-  function toggleRTL() {
-    if(htmlEl.getAttribute('dir') === 'rtl') {
-      htmlEl.removeAttribute('dir');
-      localStorage.setItem('direction', 'ltr');
-      applyRTLStyles(false);
+    
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'dark') {
+      setTheme('dark');
+    } else if(savedTheme === 'light') {
+      setTheme('light');
+    } else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
     } else {
+      setTheme('light');
+    }
+    
+    themeToggle?.addEventListener('click', () => {
+      const isDarkNow = body.classList.contains('dark');
+      setTheme(isDarkNow ? 'light' : 'dark');
+    });
+    
+    // ---------- RTL TOGGLE (preserve alignment) ----------
+    const rtlToggle = document.getElementById('rtl-toggle');
+    const htmlEl = document.documentElement;
+    
+    function applyRTLSpecifics(isRTL) {
+      const allInputs = document.querySelectorAll('.input-field, .btn-login, .social-btn');
+      allInputs.forEach(el => {
+        if(isRTL) el.style.textAlign = 'right';
+        else el.style.textAlign = '';
+      });
+      const checkboxes = document.querySelectorAll('.checkbox');
+      checkboxes.forEach(cb => {
+        if(isRTL) {
+          cb.style.direction = 'rtl';
+          cb.style.justifyContent = 'flex-end';
+        } else {
+          cb.style.direction = '';
+          cb.style.justifyContent = '';
+        }
+      });
+      const optionsRow = document.querySelector('.options-row');
+      if(optionsRow) {
+        if(isRTL) optionsRow.style.flexDirection = 'row-reverse';
+        else optionsRow.style.flexDirection = '';
+      }
+      const labelIcons = document.querySelectorAll('.label-icon');
+      labelIcons.forEach(icon => {
+        if(isRTL) {
+          icon.style.marginLeft = '6px';
+          icon.style.marginRight = '0';
+        } else {
+          icon.style.marginLeft = '';
+          icon.style.marginRight = '';
+        }
+      });
+    }
+    
+    function toggleRTL() {
+      if(htmlEl.getAttribute('dir') === 'rtl') {
+        htmlEl.removeAttribute('dir');
+        localStorage.setItem('direction', 'ltr');
+        applyRTLSpecifics(false);
+      } else {
+        htmlEl.setAttribute('dir', 'rtl');
+        localStorage.setItem('direction', 'rtl');
+        applyRTLSpecifics(true);
+      }
+    }
+    
+    if(localStorage.getItem('direction') === 'rtl') {
       htmlEl.setAttribute('dir', 'rtl');
-      localStorage.setItem('direction', 'rtl');
-      applyRTLStyles(true);
-    }
-  }
-  
-  if(localStorage.getItem('direction') === 'rtl') {
-    htmlEl.setAttribute('dir', 'rtl');
-    applyRTLStyles(true);
-  }
-  
-  rtlToggle?.addEventListener('click', () => {
-    toggleRTL();
-  });
-  
-  // Handle Login Form Submission
-  function handleLogin(event) {
-    event.preventDefault();
-    
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const remember = document.getElementById('remember').checked;
-    
-    if(!email || !password) {
-      showNotification('Please fill in all fields', 'error');
-      return false;
+      applyRTLSpecifics(true);
     }
     
-    if(!email.includes('@')) {
-      showNotification('Please enter a valid email address', 'error');
-      return false;
-    }
+    rtlToggle?.addEventListener('click', toggleRTL);
     
-    if(password.length < 3) {
-      showNotification('Password must be at least 3 characters', 'error');
-      return false;
-    }
-    
-    console.log('Login attempt:', { email, password, remember });
-    showNotification('Login successful! Redirecting...', 'success');
-    
-    if(remember) {
-      localStorage.setItem('vendora_user', email);
-      localStorage.setItem('vendora_logged_in', 'true');
-    } else {
-      sessionStorage.setItem('vendora_logged_in', 'true');
-    }
-    
-    setTimeout(() => {
-      window.location.href = 'vendor-dashboard.html';
-    }, 1500);
-    
-    return false;
-  }
-  
-  // Social Login Handler
-  function socialLogin(event, provider) {
-    event.preventDefault();
-    showNotification(`${provider} login coming soon`, 'info');
-  }
-  
-  // Notification System
-  function showNotification(message, type = 'info') {
-    const existingNotification = document.querySelector('.custom-notification');
-    if(existingNotification) {
-      existingNotification.remove();
-    }
-    
-    const notification = document.createElement('div');
-    notification.className = `custom-notification ${type}`;
-    notification.innerHTML = `
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
-        <span>${message}</span>
-      </div>
-    `;
-    
-    notification.style.position = 'fixed';
-    notification.style.bottom = '20px';
-    notification.style.left = '50%';
-    notification.style.transform = 'translateX(-50%)';
-    notification.style.padding = '10px 20px';
-    notification.style.borderRadius = '10px';
-    notification.style.fontSize = '0.8rem';
-    notification.style.fontWeight = '500';
-    notification.style.zIndex = '1000';
-    notification.style.minWidth = '250px';
-    notification.style.textAlign = 'center';
-    notification.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
-    notification.style.backdropFilter = 'blur(10px)';
-    notification.style.fontFamily = "'Inter', sans-serif";
-    
-    if(type === 'success') {
-      notification.style.background = '#10b981';
-      notification.style.color = '#ffffff';
-    } else if(type === 'error') {
-      notification.style.background = '#ef4444';
-      notification.style.color = '#ffffff';
-    } else {
-      notification.style.background = 'var(--gold)';
-      notification.style.color = '#0D0D0D';
-    }
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-      notification.style.opacity = '0';
-      notification.style.transition = 'opacity 0.3s';
+    // ---------- Notification System ----------
+    function showNotification(message, type = 'info') {
+      const existing = document.querySelector('.custom-notification');
+      if(existing) existing.remove();
+      
+      const notif = document.createElement('div');
+      notif.className = 'custom-notification';
+      let icon = 'fa-info-circle';
+      let bgColor = '#C19A6B';
+      let textColor = '#0D0D0D';
+      
+      if(type === 'success') {
+        icon = 'fa-check-circle';
+        bgColor = '#10b981';
+        textColor = '#ffffff';
+      } else if(type === 'error') {
+        icon = 'fa-exclamation-circle';
+        bgColor = '#ef4444';
+        textColor = '#ffffff';
+      } else {
+        icon = 'fa-info-circle';
+        bgColor = 'var(--gold)';
+        textColor = '#0D0D0D';
+      }
+      
+      notif.style.backgroundColor = bgColor;
+      notif.style.color = textColor;
+      notif.innerHTML = `<i class="fas ${icon}" style="margin-right: 8px;"></i> ${message}`;
+      document.body.appendChild(notif);
+      
       setTimeout(() => {
-        if(notification.parentNode) notification.remove();
-      }, 300);
-    }, 2500);
-  }
-  
-  // Enter key support
-  const loginForm = document.getElementById('loginForm');
-  if(loginForm) {
-    loginForm.addEventListener('keypress', function(e) {
-      if(e.key === 'Enter') {
-        handleLogin(e);
+        notif.style.opacity = '0';
+        setTimeout(() => {
+          if(notif.parentNode) notif.remove();
+        }, 250);
+      }, 2600);
+    }
+    
+    // ---------- Login Handler ----------
+    window.handleLogin = function(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const remember = document.getElementById('remember').checked;
+      
+      if(!email || !password) {
+        showNotification('Please fill in all fields', 'error');
+        return false;
+      }
+      if(!email.includes('@') || !email.includes('.')) {
+        showNotification('Enter a valid email address', 'error');
+        return false;
+      }
+      if(password.length < 3) {
+        showNotification('Password must be at least 3 characters', 'error');
+        return false;
+      }
+      
+      if(email !== 'vendor@vendora.com' || password !== 'demo123') {
+        showNotification('Invalid credentials. Use vendor@vendora.com / demo123', 'error');
+        return false;
+      }
+      
+      showNotification('Login successful! Redirecting to dashboard...', 'success');
+      
+      if(remember) {
+        localStorage.setItem('vendora_user', email);
+        localStorage.setItem('vendora_logged_in', 'true');
+      } else {
+        sessionStorage.setItem('vendora_logged_in', 'true');
+      }
+      
+      setTimeout(() => {
+        window.location.href = 'vendor-dashboard.html';
+      }, 1300);
+      return false;
+    };
+    
+    window.socialLogin = function(event, provider) {
+      event.preventDefault();
+      showNotification(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login coming soon`, 'info');
+    };
+    
+    const loginForm = document.getElementById('loginForm');
+    if(loginForm) {
+      loginForm.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter') handleLogin(e);
+      });
+    }
+    
+    window.addEventListener('resize', () => {
+      if(htmlEl.getAttribute('dir') === 'rtl') {
+        applyRTLSpecifics(true);
       }
     });
-  }
-  
-  // Fix RTL on resize
-  window.addEventListener('resize', () => {
-    if(htmlEl.getAttribute('dir') === 'rtl') {
-      applyRTLStyles(true);
-    }
-  });
+  })();
 </script>
-
-<style>
-  /* RTL specific adjustments */
-  [dir="rtl"] .input-group label .label-icon {
-    margin-left: 6px;
-    margin-right: 0;
-  }
-  
-  [dir="rtl"] .checkbox {
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-  }
-  
-  [dir="rtl"] .checkbox input {
-    margin-left: 6px;
-    margin-right: 0;
-  }
-  
-  [dir="rtl"] .btn-login i,
-  [dir="rtl"] .social-btn i {
-    margin-left: 8px;
-    margin-right: 0;
-  }
-  
-  [dir="rtl"] .demo-hint i {
-    margin-left: 5px;
-    margin-right: 0;
-  }
-  
-  [dir="rtl"] .forgot-link {
-    text-align: left;
-  }
-  
-  [dir="rtl"] .options-row {
-    flex-direction: row-reverse;
-    justify-content: space-between;
-  }
-  
-  [dir="rtl"] .register-link a {
-    margin-left: 0;
-    margin-right: 4px;
-  }
-  
-  @media (max-width: 380px) {
-    [dir="rtl"] .options-row {
-      flex-direction: column-reverse;
-      align-items: flex-end;
-    }
-  }
-</style>
-
 </body>
 </html>

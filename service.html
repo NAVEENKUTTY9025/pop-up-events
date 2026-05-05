@@ -553,8 +553,8 @@
         </div>
       </div>
       <div class="nav-buttons">
-        <a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
-        <a href="register.html" class="login-btn"><i class="fas fa-user-plus"></i> Register</a>
+        <a href="login.html" class="login-btn"> Login</a>
+        <a href="register.html" class="login-btn"> Register</a>
         <button id="rtl-toggle" class="icon-btn" title="RTL"><i class="fas fa-exchange-alt"></i></button>
         <button id="theme-toggle" class="icon-btn" title="Theme"><i class="fas fa-moon"></i></button>
       </div>
@@ -724,21 +724,70 @@
   <div class="container">
     <h2 class="section-title">Why Vendora <span class="gold-text">Services?</span></h2>
     <div class="gold-divider"></div>
-    <div class="grid-2">
+
+    <div class="grid-2" style="align-items: center; gap: 2rem;">
+      
+      <!-- IMAGE -->
       <div>
-        <img class="full-width-img" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format" alt="Vendora service advantage" style="border-radius: 16px;">
+        <img 
+          class="full-width-img" 
+          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format" 
+          alt="Vendora service advantage" 
+          style="border-radius: 16px;"
+        >
       </div>
-      <div>
-        <div class="benefit-list">
-          <li><i class="fas fa-crown"></i> <strong>Premium Network</strong> — Access to 500+ luxury brands and 50K+ event attendees annually</li>
-          <li><i class="fas fa-shield-alt"></i> <strong>End-to-End Security</strong> — Insured events, secure payments, and vendor protection</li>
-          <li><i class="fas fa-globe"></i> <strong>Pan-India Presence</strong> — Events in Mumbai, Delhi, Bangalore, Goa, and more</li>
-          <li><i class="fas fa-rocket"></i> <strong>Rapid Growth</strong> — Vendors see average 210% sales increase after joining</li>
-       <div style="text-align: center; margin-top: 2rem;">
-  <a href="#consultation" class="btn-gold">
-    Get Started <i class="fas fa-arrow-right"></i>
-  </a>
-</div>
+
+      <!-- BENEFITS -->
+      <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+        
+        <div style="display: flex; gap: 1rem; align-items: flex-start; padding: 1rem; border-radius: 12px; background: #fff;">
+          <i class="fas fa-crown gold-text" style="font-size: 1.4rem; margin-top: 2px;"></i>
+          <div>
+            <h4 style="margin: 0;">Premium Network</h4>
+            <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: var(--text-muted);">
+              Access to 500+ luxury brands and 50K+ annual attendees
+            </p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; align-items: flex-start; padding: 1rem; border-radius: 12px; background: #fff;">
+          <i class="fas fa-shield-alt gold-text" style="font-size: 1.4rem; margin-top: 2px;"></i>
+          <div>
+            <h4 style="margin: 0;">Secure Experience</h4>
+            <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: var(--text-muted);">
+              Insured events, secure payments, and vendor protection
+            </p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; align-items: flex-start; padding: 1rem; border-radius: 12px; background: #fff;">
+          <i class="fas fa-globe gold-text" style="font-size: 1.4rem; margin-top: 2px;"></i>
+          <div>
+            <h4 style="margin: 0;">Pan-India Reach</h4>
+            <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: var(--text-muted);">
+              Events across Mumbai, Delhi, Bangalore, Goa and more
+            </p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; align-items: flex-start; padding: 1rem; border-radius: 12px; background: #fff;">
+          <i class="fas fa-rocket gold-text" style="font-size: 1.4rem; margin-top: 2px;"></i>
+          <div>
+            <h4 style="margin: 0;">Growth Focused</h4>
+            <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: var(--text-muted);">
+              Vendors achieve up to 210% sales growth
+            </p>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="text-align: left; margin-top: 1rem;">
+          <a href="#consultation" class="btn-gold">
+            Get Started <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
