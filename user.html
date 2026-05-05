@@ -280,7 +280,7 @@
             justify-content: center;
             cursor: pointer;
             transition: 0.2s;
-            color: white;
+            color: var(--color-primary-text);
             border: none;
         }
         .icon-btn:hover {
@@ -296,12 +296,12 @@
 <body>
 
     <!-- TOP NAVIGATION BAR - SAME AS INDEX.HTML -->
-    <nav style="background: #0D0D0D; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+    <nav style="background: var(--color-background); position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
         <div style="max-width: 1400px; margin: 0 auto; padding: 0 1.5rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; height: 80px;">
                 <div>
                      <div>
-                    <a href="index.html" class="nav-logo-text" style="color: white;"><span>Vendora</span> User</a>
+                    <a href="index.html" class="nav-logo-text" style="color: var(--color-primary-text);"><span>Vendora</span> User</a>
                 </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
@@ -320,7 +320,7 @@
                             <span class="status-pulse" style="position: absolute; bottom: 0; right: 0;"></span>
                         </div>
                         <div class="user-info-desktop" style="display: none;">
-                            <p style="color: white; font-size: 0.875rem; font-weight: 500;">Elena Voss</p>
+                            <p style="color: var(--color-primary-text); font-size: 0.875rem; font-weight: 500;">Elena Voss</p>
                             <p style="color: #aaaaaa; font-size: 0.75rem;">Premium Vendor</p>
                         </div>
                     </div>
@@ -330,31 +330,31 @@
     </nav>
 
     <!-- Mobile Menu Panel (Same as index.html style) -->
-    <div id="mobile-menu-panel" style="position: fixed; top: 80px; left: 0; right: 0; background: #0D0D0D; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; z-index: 999; box-shadow: 0 20px 30px rgba(0,0,0,0.3);">
+    <div id="mobile-menu-panel" style="position: fixed; top: 80px; left: 0; right: 0; background: var(--color-background); max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; z-index: 999; box-shadow: 0 20px 30px rgba(0,0,0,0.3);">
         <div style="padding: 0.5rem 0;">
             <div style="border-bottom: 1px solid rgba(193,154,107,0.1);">
-                <a href="#" data-section="overview" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Overview</a>
+                <a href="#" data-section="overview" class="mobile-nav-link" style="color: var(--color-primary-text); text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Overview</a>
             </div>
             <div style="border-bottom: 1px solid rgba(193,154,107,0.1);">
-                <a href="#" data-section="applications" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">My Applications</a>
+                <a href="#" data-section="applications" class="mobile-nav-link" style="color: var(--color-primary-text); text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">My Applications</a>
             </div>
             <div style="border-bottom: 1px solid rgba(193,154,107,0.1);">
-                <a href="#" data-section="markets" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Upcoming Markets</a>
+                <a href="#" data-section="markets" class="mobile-nav-link" style="color: var(--color-primary-text); text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Upcoming Markets</a>
             </div>
             <div style="border-bottom: 1px solid rgba(193,154,107,0.1);">
-                <a href="#" data-section="earnings" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Earnings & Payouts</a>
+                <a href="#" data-section="earnings" class="mobile-nav-link" style="color: var(--color-primary-text); text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Earnings & Payouts</a>
             </div>
             <div style="border-bottom: 1px solid rgba(193,154,107,0.1);">
-                <a href="#" data-section="profile" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Profile Management</a>
+                <a href="#" data-section="profile" class="mobile-nav-link" style="color: var(--color-primary-text); text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Profile Management</a>
             </div>
             <div style="border-bottom: 1px solid rgba(193,154,107,0.1);">
-                <a href="#" data-section="messages" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Messages</a>
+                <a href="#" data-section="messages" class="mobile-nav-link" style="color: var(--color-primary-text); text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Messages</a>
             </div>
             <div style="border-bottom: 1px solid rgba(193,154,107,0.1);">
-                <a href="#" data-section="settings" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Settings</a>
+                <a href="#" data-section="settings" class="mobile-nav-link" style="color: var(--color-primary-text); text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Settings</a>
             </div>
             <div>
-                <a href="#" data-section="logout" class="mobile-nav-link" style="color: white; text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Logout</a>
+                <a href="#" data-section="logout" class="mobile-nav-link" style="color: var(--color-primary-text); text-decoration: none; display: block; padding: 1rem 1.5rem; font-weight: 500;">Logout</a>
             </div>
         </div>
     </div>
